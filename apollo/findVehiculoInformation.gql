@@ -1,0 +1,22 @@
+query($id:ID!){
+  vehiculoimagen(id:$id){
+  	id
+     url_imagen{
+        id
+        name
+        url
+      }
+      vehiculoanio{
+        id
+        anio
+        vehiculo{
+          id
+          modelo
+          categoria{
+            id
+            name
+          }
+        }
+    }
+  }
+}
