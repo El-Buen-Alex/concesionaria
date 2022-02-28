@@ -14,7 +14,7 @@ export const getters = {
         : state.cartItems
             .map((el) => el.price * el.quantity)
             .reduce((a, b) => a + b),
-    getVehiculoSelected:(state)=>state.vehiculoSelected
+    vehiculoSelected:(state)=>state.vehiculoSelected
 }
 export const actions = {
     async addItemToCart({ commit }, cartItem) {
