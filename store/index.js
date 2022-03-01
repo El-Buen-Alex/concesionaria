@@ -1,5 +1,6 @@
 export const state = () => ({
     allProducts: [],
+    categories:[],
     featuredProducts: [],
     cartItems: [],
     vehiculoSelected:[]
@@ -14,7 +15,8 @@ export const getters = {
         : state.cartItems
             .map((el) => el.price * el.quantity)
             .reduce((a, b) => a + b),
-    vehiculoSelected:(state)=>state.vehiculoSelected
+    vehiculoSelected:(state)=>state.vehiculoSelected,
+    categories:(state)=>state.categories,
 }
 export const actions = {
     async addItemToCart({ commit }, cartItem) {
@@ -34,5 +36,6 @@ export const mutations = {
         state.cartItems.findIndex((el) => el.id === id),
         1
       ),
-    setVehiculoSelected:(state, vehiculo)=>(state.vehiculoSelected=vehiculo)
+      setVehiculoSelected:(state, vehiculo)=>(state.vehiculoSelected=vehiculo),
+    setCategories:(state, categories)=>(state.categories=categories)
   }

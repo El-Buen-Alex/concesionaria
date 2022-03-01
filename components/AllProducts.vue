@@ -1,25 +1,85 @@
 <template>
-    <div class="flex justify-center">
-        <div class="w-5/6  bg-black ">
-            <div class="flex">
-                <div v-for="carro in products" :key="carro.id" class="w-1/5 px-2">
-                    <NuxtLink :to="`/products/${carro.id}`">
-                        <div class="bg-white rounded-lg shadow-md w-full ">
-                        <img :src="'http://localhost:1337'+carro.url_imagen.url" :alt="carro.url_imagen.name" srcset="">
-                        <p class="w-full fw-bold">{{carro.vehiculoanio.vehiculo.modelo}}</p>
-                        </div>
-                    </NuxtLink>
+    <div class="flex justify-center mt-2 h-48 ">
+        <div class="w-5/6  bg-black h-full">
+                <div v-if="$apollo.loading">Loading..-</div>
+                <div v-else class="flex items-center">
+                    <div class="w-1/5 px-2 text-white">
+                        {{category.name}}
+                    </div>
+                    <div class="w-1/5 px-2 h-full"  v-for="vehiculoInformation in vehiculos" :key="vehiculoInformation.id">
+                         <NuxtLink clasS=" flex items-center" :to="`/products/${vehiculoInformation.id}`">
+                            <div class="bg-white rounded-lg shadow-md w-full ">
+                                <div class="h-32">
+                                <img class="w-full h-full" :src="'http://localhost:1337'+vehiculoInformation.url_imagen.url" :alt="vehiculoInformation.url_imagen.name" srcset="">
+                                </div>
+                                <p class="w-full fw-bold  flex justify-center">{{vehiculoInformation.vehiculoanio.vehiculo.modelo}}</p>
+                            </div>
+                        </NuxtLink>
+                    </div>
                 </div>
-            </div>
         </div> 
     </div>
 </template>
 
 <script>
+import getVehiculosByCategoryId from '~/apollo/getVehiculoAnio'
 export default {
+
+    data() {
+        return {
+            vehiculos:[],
+        }
+    },
+    mounted(){
+        this.getVehiculos()
+    },
+    methods:{
+        getVehiculos(){
+            console.log(this.category.id)
+            this.$apollo.queries.vehiculoimagens.start()
+        },
+        
+    },
+    apollo:{
+        vehiculoimagens:{
+            prefetech:false,
+            query:getVehiculosByCategoryId,
+            variables(){
+                const where={
+                    "vehiculoanio":{
+                        "vehiculo":{
+                            "categoria":{
+                                "id": this.category.id
+                            }
+                        }
+                    }
+                }
+                return {
+                    where:where
+                }
+            },
+             result ({ data, loading }) {
+                if (!loading) {
+                     this.vehiculos=data.vehiculoimagens
+                     //cuando ya estemos en prod
+                    // if(this.vehiculos.length>1){
+                    //      let hash={}
+                    //  this.vehiculos=this.vehiculos.filter((elemento)=>{
+                    //      let exists = !hash[elemento.vehiculoanio.vehiculo.id];
+                    //     hash[elemento.vehiculoanio.vehiculo.id] = true;
+                    //     return exists;
+                    //  })
+                    //  hash={}
+                    //  console.log( this.vehiculos)
+                    // }
+                    
+                }
+            },
+        }
+    },
     props: {
-        products:{
-            type:Array,
+        category:{
+            type:Object,
             required:true
         }
     }

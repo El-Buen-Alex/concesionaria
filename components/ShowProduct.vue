@@ -2,15 +2,19 @@
     <div>
         <div class="w-1/2">
             <div>
-                <h1>{{vehiculo.vehiculoanio.vehiculo.modelo}}</h1>
+                <h1>{{vehiculoInformation.vehiculoanio.vehiculo.modelo}}</h1>
             </div>
+            
             <div>
                 <div>
-                  <img :src="RouteServer+vehiculo.url_imagen.url" :alt="vehiculo.vehiculoanio.vehiculo.modelo" class="w-100">
+                  <img :src="RouteServer+url_previe_img" alt="preview_del_vehiculo" class="w-100">
                 </div>
-                <div>
-
-                </div>
+                <div class="flex">
+                    <div class="w-1/3" v-for="vehiculoimagen in vehiculoImagenesSelected" :key="vehiculoimagen.id">
+                        <input type="radio" :id="vehiculoimagen.id" name="drone" @click="refreshPreview(vehiculoimagen)" :checked="vehiculoimagen.id==vehiculoInformation.id? true : ''">
+                        <img :src="RouteServer+vehiculoimagen.url_imagen.url" :alt="vehiculoimagen.vehiculoanio.vehiculo.modelo" class="w-100">
+                    </div>
+                </div> 
             </div>
         </div>
         <div class="w-1/2"></div>
@@ -19,16 +23,32 @@
 </template>
 
 <script>
-import qeryVehiculoByAnioAndModelo from '~/apollo/getVehiculosPorAnioYModelo'
+import qeryVehiculoByAnioAndModelo from '~/apollo/getVehiculosPorModelo'
 export default {
     name:'ShowProduct',
+    data(){
+        return {
+            vehiculoImagenesSelected:null,
+            url_previe_img:{
+                type:String
+            }
+        }
+    },
     props: {
-        vehiculo:{
+        vehiculoInformation:{
             required:true
         }
     },
     mounted() {
-        console.log(this.vehiculo)
+        this.setUrlImgPreview()
+    },
+    methods: {
+        refreshPreview(vehiculoimagen){
+            this.url_previe_img=vehiculoimagen.url_imagen.url
+        },
+        setUrlImgPreview(){
+            this.url_previe_img=this.vehiculoInformation.url_imagen.url
+        }
     },
     computed: {
         RouteServer(){
@@ -42,8 +62,9 @@ export default {
             variables(){
                 const where={
                     "vehiculoanio":{
-                        "anio":"2022",
-                        "vehiculo":""+this.vehiculo.vehiculoanio.vehiculo.id
+                        "vehiculo":{
+                            "id":this.vehiculoInformation.vehiculoanio.vehiculo.id
+                        }
                     }
                 }
                 return {
@@ -53,6 +74,7 @@ export default {
              result ({ data, loading }) {
                 if (!loading) {
                     console.log("error",data)
+                    this.vehiculoImagenesSelected=data.vehiculoimagens
                 }
             },
         }

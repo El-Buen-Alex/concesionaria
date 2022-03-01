@@ -1,0 +1,23 @@
+query ($where:JSON){
+  vehiculoimagens(where:$where){
+    id
+    url_imagen{
+      id
+      url
+    }
+    vehiculoanio{
+      id
+      anio{
+        id
+        anio_publicado
+      }
+      vehiculo{
+        id
+        modelo
+        categoria{
+          id
+        }
+      }
+    }
+  }
+}

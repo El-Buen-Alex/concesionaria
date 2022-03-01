@@ -1,6 +1,6 @@
 <template>
-  <div>
-      <All-products :products="allProducts"/>
+  <div >
+      <All-products v-for="category in categories" :key="category.id" :category="category"/>
   </div>
 </template>
 
@@ -8,30 +8,8 @@
 import gql from 'graphql-tag'
 import { mapGetters } from "vuex";
 import AllProducts from '~/components/AllProducts.vue';
-const ALL_CHARACTERS_QUERY = gql`
-  query vehiculoimagens{
-     vehiculoimagens{
-      id
-      url_imagen{
-        id
-        name
-        url
-      }
-      vehiculoanio{
-        id
-        anio
-        vehiculo{
-          id
-          modelo
-          categoria{
-            id
-            name
-          }
-        }
-      }
-    }
-  }
-`;
+import GetCategorias from '~/apollo/getCategorias'
+
 
 export default  {
   components: { AllProducts },
@@ -42,21 +20,24 @@ export default  {
     }
   },
   mounted(){
-    this.setProductsState()
+    
   },
   methods: {
-    setProductsState(){
-      this.$store.commit('setProducts', this.vehiculoimagens)
-    }
+    
   },
   apollo: {
-    vehiculoimagens: {
-      query: ALL_CHARACTERS_QUERY,
-      prefetch: true,
-    },
+    categorias:{
+      prefetch:true,
+      query:GetCategorias,
+       result ({ data, loading }) {
+          if (!loading) {
+              this.$store.commit('setCategories', data.categorias)
+          }
+      },
+    }
   },
   computed:{
-     ...mapGetters(["allProducts"]),
+     ...mapGetters(["categories"]),
   }
 }
 

@@ -8,7 +8,10 @@ query($id:ID!){
       }
       vehiculoanio{
         id
-        anio
+        anio{
+          id
+          anio_publicado
+        }
         vehiculo{
           id
           modelo

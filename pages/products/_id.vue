@@ -2,7 +2,7 @@
     <div class="flex justify-center">
         <div v-if="$apollo.loading">Loading..-</div>
         <div v-else class="w-5/6">
-            <ShowProduct :vehiculo="vehiculoSelected" />
+            <ShowProduct :vehiculoInformation="vehiculoSelected"/>
         </div>
     </div>
 </template>
@@ -36,13 +36,14 @@ export default {
         }
     },
     created(){
+       
         this.getVechiuloById()
+        
     },
     methods:{
          getVechiuloById(){
              this.$apollo.queries.vehiculoimagen.start()             
         },
-         
     },
     computed:{
         ...mapGetters(["vehiculoSelected"]),
