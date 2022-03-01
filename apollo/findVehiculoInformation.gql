@@ -12,6 +12,7 @@ query($id:ID!){
           id
           anio_publicado
         }
+        precio
         vehiculo{
           id
           modelo

@@ -11,6 +11,7 @@ query ($where:JSON){
         id
         anio_publicado
       }
+      precio
       vehiculo{
         id
         modelo

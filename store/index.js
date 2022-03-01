@@ -3,7 +3,10 @@ export const state = () => ({
     categories:[],
     featuredProducts: [],
     cartItems: [],
-    vehiculoSelected:[]
+    vehiculoSelected:[],
+    canPersonalice:false,
+    CanSeeResumen:false,
+    CanComprar:false,
 })
 export const getters = {
     allProducts: (state) => state.allProducts,
@@ -13,10 +16,13 @@ export const getters = {
       state.cartItems.length < 1
         ? '0'
         : state.cartItems
-            .map((el) => el.price * el.quantity)
+            .map((el) => +el.precio )
             .reduce((a, b) => a + b),
     vehiculoSelected:(state)=>state.vehiculoSelected,
     categories:(state)=>state.categories,
+    CanPersonalice:(state)=>state.canPersonalice,
+    CanSeeResumen:(state)=>state.CanSeeResumen,
+    CanComprar:(state)=>state.CanComprar,
 }
 export const actions = {
     async addItemToCart({ commit }, cartItem) {
@@ -37,5 +43,8 @@ export const mutations = {
         1
       ),
       setVehiculoSelected:(state, vehiculo)=>(state.vehiculoSelected=vehiculo),
-    setCategories:(state, categories)=>(state.categories=categories)
+    setCategories:(state, categories)=>(state.categories=categories),
+    setCanPersonalice:(state, canPersonalice)=>(state.canPersonalice=canPersonalice),
+    setCanSeeResumen:(state, CanSeeResumen)=>(state.CanSeeResumen=CanSeeResumen),
+    SetCanComprar:(state, CanComprar)=>(state,CanComprar=CanComprar)
   }

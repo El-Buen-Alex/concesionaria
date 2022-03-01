@@ -36,14 +36,20 @@ export default {
         }
     },
     created(){
-       
         this.getVechiuloById()
-        
+        this.activeCanPersonalizarLink()
     },
     methods:{
          getVechiuloById(){
              this.$apollo.queries.vehiculoimagen.start()             
         },
+        activeCanPersonalizarLink(){
+              this.$store.commit('setCanPersonalice', true)
+        },
+        addValorVehiculoPredeterminado(){
+            this.$store.commit('setVehiculoSelected', data.vehiculoimagen)
+        },
+      
     },
     computed:{
         ...mapGetters(["vehiculoSelected"]),
