@@ -1,0 +1,13 @@
+query($where:JSON){
+  transmisions(where:$where){
+    id
+    precio
+    vehiculoanio{
+      id
+    }
+    tipotransmision{
+      id
+      tipo
+    }
+  }
+}

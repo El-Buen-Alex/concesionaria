@@ -1,0 +1,10 @@
+query($where:JSON){
+  motors(where:$where){
+    id
+    especificacion
+    precio
+    vehiculoanio{
+      id
+    }
+  }
+}

@@ -3,8 +3,7 @@
         <div class="w-1/2">
             <div>
                 <h1>{{vehiculoInformation.vehiculoanio.vehiculo.modelo}}</h1>
-            </div>
-            
+            </div>   
             <div>
                 <div>
                   <img :src="RouteServer+url_previe_img" alt="preview_del_vehiculo" class="w-100">
@@ -17,8 +16,7 @@
                 </div> 
             </div>
         </div>
-        <div class="w-1/2"></div>
-
+        <!-- <NuxtLink :to="`/products/${vehiculoInformation.id}/personalizar/main`">Child 2</NuxtLink> -->
     </div>
 </template>
 
@@ -41,6 +39,7 @@ export default {
     },
     mounted() {
         this.setUrlImgPreview()
+        this.goToShowInformation()
     },
     methods: {
         refreshPreview(vehiculoimagen){
@@ -48,6 +47,9 @@ export default {
         },
         setUrlImgPreview(){
             this.url_previe_img=this.vehiculoInformation.url_imagen.url
+        },
+        goToShowInformation(){
+            this.$router.push(`/products/${this.vehiculoInformation.id}/personalizar/main`)
         }
     },
     computed: {

@@ -7,6 +7,8 @@ export const state = () => ({
     canPersonalice:false,
     CanSeeResumen:false,
     CanComprar:false,
+    motores:[],
+    transmisiones:[],
 })
 export const getters = {
     allProducts: (state) => state.allProducts,
@@ -23,6 +25,8 @@ export const getters = {
     CanPersonalice:(state)=>state.canPersonalice,
     CanSeeResumen:(state)=>state.CanSeeResumen,
     CanComprar:(state)=>state.CanComprar,
+    motores:(state)=>state.motores,
+    transmisiones:(state)=>state.transmisiones
 }
 export const actions = {
     async addItemToCart({ commit }, cartItem) {
@@ -46,5 +50,7 @@ export const mutations = {
     setCategories:(state, categories)=>(state.categories=categories),
     setCanPersonalice:(state, canPersonalice)=>(state.canPersonalice=canPersonalice),
     setCanSeeResumen:(state, CanSeeResumen)=>(state.CanSeeResumen=CanSeeResumen),
-    SetCanComprar:(state, CanComprar)=>(state,CanComprar=CanComprar)
+    SetCanComprar:(state, CanComprar)=>(state.CanComprar=CanComprar),
+    setMotores:(state, motores)=>(state.motores=motores),
+    setTransmisiones:(state, transmisiones)=>(state.transmisiones=transmisiones)
   }

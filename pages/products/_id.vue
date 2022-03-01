@@ -4,6 +4,7 @@
         <div v-else class="w-5/6">
             <ShowProduct :vehiculoInformation="vehiculoSelected"/>
         </div>
+        <NuxtChild  />
     </div>
 </template>
 <script>
@@ -56,6 +57,6 @@ export default {
     },
     components:{
         ShowProduct
-    }
+    },
 }
 </script>
