@@ -9,6 +9,14 @@
      
           <li v-if="transmisiones.length>0" :key="transmisiones[0].detalle">{{transmisiones[0].tipotransmision.tipo}} de {{transmisiones[0].detalle}}</li>
       </ul>
+      <div class="w-full flex px-1">
+          <div class="w-1/3 px-2">
+                <button class="w-full bg-red-600"><NuxtLink :to="`/products/${id}/personalizar/potencia`">Atras</NuxtLink></button>
+          </div>
+          <div class="w-2/3 px-2">
+                <button class="w-full bg-green-600"><NuxtLink :to="`/products/${id}/personalizar/potencia`">Siguiente</NuxtLink></button>
+          </div>    
+      </div>
   </div>
 </template>
 
@@ -20,8 +28,11 @@ import GetTraccionDetalleByIdTraccion from '~/apollo/GetTraccionDetalleByIdTracc
 export default {
     data() {
         return {
-            
+            id:0
         }
+    },
+    created(){
+        this.id=this.$route.params.id
     },
     mounted() {
         if(this.tracciones.length>0){

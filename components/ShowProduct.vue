@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div class="w-1/2">
+       
             <div>
                 <h1>{{vehiculoInformation.vehiculoanio.vehiculo.modelo}}</h1>
             </div>   
-            <div>
-                <div>
-                  <img :src="RouteServer+url_previe_img" alt="preview_del_vehiculo" class="w-100">
+            <div class="w-full">
+                <div class="w-full">
+                  <img :src="RouteServer+url_previe_img" alt="preview_del_vehiculo" class="w-full">
                 </div>
                 <div class="flex">
                     <div class="w-1/3" v-for="vehiculoimagen in vehiculoImagenesSelected" :key="vehiculoimagen.id">
@@ -15,7 +15,7 @@
                     </div>
                 </div> 
             </div>
-        </div>
+       
         <!-- <NuxtLink :to="`/products/${vehiculoInformation.id}/personalizar/main`">Child 2</NuxtLink> -->
     </div>
 </template>

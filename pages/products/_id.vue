@@ -2,9 +2,16 @@
     <div class="flex justify-center">
         <div v-if="$apollo.loading">Loading..-</div>
         <div v-else class="w-5/6">
-            <ShowProduct :vehiculoInformation="vehiculoSelected"/>
+           <div class="flex">
+                <div class="w-1/2">
+                <ShowProduct :vehiculoInformation="vehiculoSelected"/>
+            </div>
+             <div class="w-1/2">
+                <NuxtChild  />
+            </div>
+           </div>
         </div>
-        <NuxtChild  />
+        
     </div>
 </template>
 <script>
