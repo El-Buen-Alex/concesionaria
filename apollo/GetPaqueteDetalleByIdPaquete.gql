@@ -1,0 +1,9 @@
+query($where:JSON){
+  paqueteDetalles(where:$where){
+    id
+    detalle
+    paquete{
+      id
+    }
+  }
+}

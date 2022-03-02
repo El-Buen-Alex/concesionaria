@@ -1,0 +1,9 @@
+query($where:JSON){
+  traccions(where:$where){
+    id
+    precio
+    vehiculoanio{
+      id
+    }
+  }
+}

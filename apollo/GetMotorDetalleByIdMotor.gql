@@ -1,0 +1,9 @@
+query($where:JSON){
+  motorDetalles(where:$where){
+    id
+    detalle
+    motor{
+      id
+    }
+  }
+}

@@ -1,0 +1,9 @@
+query($where:JSON){
+  traccionDetalles(where:$where){
+    id
+    detalle
+    traccion{
+      id
+    }
+  }
+}

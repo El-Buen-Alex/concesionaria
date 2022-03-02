@@ -2,6 +2,7 @@ query($where:JSON){
   transmisions(where:$where){
     id
     precio
+    detalle
     vehiculoanio{
       id
     }

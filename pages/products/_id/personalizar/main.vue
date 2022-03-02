@@ -8,6 +8,8 @@
 import { mapGetters, mapActions } from "vuex";
 import GetTransmisionesByIdVehiculoanio from "~/apollo/GetTransmisionesByIdVehiculoanio";
 import GetMotorsByIdVehiculoAnio from "~/apollo/GetMotorsByIdVehiculoAnio";
+import GetPaquetesByIdVehiculoanio from '~/apollo/GetPaquetesByIdVehiculoanio'
+import GetTraccionesByIdVehiculoAnio from '~/apollo/GetTraccionesByIdVehiculoAnio'
 import MainInformation from '~/components/personalizacion/MainInformation.vue'
 export default {
   data() {
@@ -19,6 +21,9 @@ export default {
         type: Array,
       },
       tranmisiones:{
+        type:Array
+      },
+      paquetes:{
         type:Array
       },
       where: {},
@@ -57,6 +62,37 @@ export default {
         }
       },
     },
+    paquetes:{
+      prefetch: false,
+      query:  GetPaquetesByIdVehiculoanio,
+      variables() {
+        return {
+          where: this.where,
+        };
+      },
+      result({ data, loading }) {
+        if (!loading) {
+          this.paquetes = data.paquetes;
+          this.addItemToCart(this.paquetes[0])
+          this.$store.commit('setPaquetes', this.paquetes)
+        }
+      },
+    },
+    traccions:{
+      prefetch: false,
+      query:  GetTraccionesByIdVehiculoAnio,
+      variables() {
+        return {
+          where: this.where,
+        };
+      },
+      result({ data, loading }) {
+        if (!loading) {
+          this.addItemToCart(data.traccions[0])
+          this.$store.commit('setTracciones', data.traccions)
+        }
+      },
+    }
   },
   created() {
     this.idVehiculoanio = this.vehiculoSelected.vehiculoanio.id;
@@ -69,6 +105,8 @@ export default {
   mounted() {
     this.getMotors();
     this.getTransmisiones()
+    this.getTracciones()
+    this.getPaquetes()
     console.log(this.tranmisiones)
   },
   methods: {
@@ -79,6 +117,12 @@ export default {
     },
     getTransmisiones(){
       this.$apollo.queries.transmisions.start();
+    },
+    getTracciones(){
+      this.$apollo.queries.traccions.start();
+    },
+    getPaquetes(){
+      this.$apollo.queries.paquetes.start();
     }
   },
   computed: {

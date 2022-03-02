@@ -1,0 +1,10 @@
+query($where:JSON){
+  paquetes(where:$where){
+    id
+    name
+    precio
+    vehiculoanio{
+      id
+    }
+  }
+}

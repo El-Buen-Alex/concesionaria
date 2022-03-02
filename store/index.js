@@ -9,6 +9,11 @@ export const state = () => ({
     CanComprar:false,
     motores:[],
     transmisiones:[],
+    paquetes:[],
+    paqueteDetalle:[],
+    motorDetalle:[],
+    tracciones:[],
+    traccionDetalle:[],
 })
 export const getters = {
     allProducts: (state) => state.allProducts,
@@ -26,7 +31,12 @@ export const getters = {
     CanSeeResumen:(state)=>state.CanSeeResumen,
     CanComprar:(state)=>state.CanComprar,
     motores:(state)=>state.motores,
-    transmisiones:(state)=>state.transmisiones
+    transmisiones:(state)=>state.transmisiones,
+    paquetes:(state)=>state.paquetes,
+    paqueteDetalle:(state)=>state.paqueteDetalle,
+    motorDetalle:(state)=>state.motorDetalle,
+    tracciones:(state)=>(state.tracciones),
+    traccionDetalle:(state)=>(state.traccionDetalle)
 }
 export const actions = {
     async addItemToCart({ commit }, cartItem) {
@@ -52,5 +62,11 @@ export const mutations = {
     setCanSeeResumen:(state, CanSeeResumen)=>(state.CanSeeResumen=CanSeeResumen),
     SetCanComprar:(state, CanComprar)=>(state.CanComprar=CanComprar),
     setMotores:(state, motores)=>(state.motores=motores),
-    setTransmisiones:(state, transmisiones)=>(state.transmisiones=transmisiones)
+    setTransmisiones:(state, transmisiones)=>(state.transmisiones=transmisiones),
+    setPaquetes:(state, paquetes)=>(state.paquetes=paquetes),
+    setPaqueteDetalle:(state, paqueteDetalle)=>(state.paqueteDetalle=paqueteDetalle),
+    setMotorDetalle:(state, motorDetalle)=>(state.motorDetalle=motorDetalle),
+    setTracciones:(state, traccion)=>(state.traccion=traccion),
+    setTraccionDettale:(state, traccionDetalle)=>(state.traccionDetalle=traccionDetalle)
+
   }
