@@ -1,6 +1,6 @@
 <template>
-  <div v-if="!$apollo.loading">
-    <MainInformation  />
+  <div>
+    <MainInformation v-if="!$apollo.queries.traccions.loading" />
   </div>
 </template>
 
@@ -8,91 +8,94 @@
 import { mapGetters, mapActions } from "vuex";
 import GetTransmisionesByIdVehiculoanio from "~/apollo/GetTransmisionesByIdVehiculoanio";
 import GetMotorsByIdVehiculoAnio from "~/apollo/GetMotorsByIdVehiculoAnio";
-import GetPaquetesByIdVehiculoanio from '~/apollo/GetPaquetesByIdVehiculoanio'
-import GetTraccionesByIdVehiculoAnio from '~/apollo/GetTraccionesByIdVehiculoAnio'
-import MainInformation from '~/components/personalizacion/MainInformation.vue'
+import GetPaquetesByIdVehiculoanio from "~/apollo/GetPaquetesByIdVehiculoanio";
+import GetTraccionesByIdVehiculoAnio from "~/apollo/GetTraccionesByIdVehiculoAnio";
+import MainInformation from "~/components/personalizacion/MainInformation.vue";
 export default {
   data() {
     return {
       idVehiculoanio: {
         type: Number,
       },
-      motors: {
-        type: Array,
-      },
-      tranmisiones:{
-        type:Array
-      },
-      paquetes:{
-        type:Array
-      },
       where: {},
     };
   },
   apollo: {
     transmisions: {
-      prefetch: false,
+      prefetch:false,
       query: GetTransmisionesByIdVehiculoanio,
-      variables() {
-        return {
-          where: this.where,
-        };
+      variables(){
+        return{
+          where: this.where
+        }
       },
       result({ data, loading }) {
-        if (!loading) {
-          this.tranmisiones = data.transmisions;
-          this.addItemToCart(this.tranmisiones[0])
-          this.$store.commit('setTransmisiones', this.tranmisiones)
-        }
+         if(!loading){
+        // data.transmisions[0].idUnique = data.transmisions[0].id + "tranmision";
+        // this.addItemToCart(data.transmisions[0]);
+         this.$store.commit("setTransmisiones", data.transmisions);
+        // console.log("que raross", this.getCart);
+        console.log("recupere 1")
+         }
       },
     },
     motors: {
-      prefetch: false,
-      query:  GetMotorsByIdVehiculoAnio,
-      variables() {
-        return {
-          where: this.where,
-        };
+      prefetch:false,
+      query: GetMotorsByIdVehiculoAnio,
+      variables(){
+        return{
+          where: this.where
+        }
       },
       result({ data, loading }) {
-        if (!loading) {
-          this.motors = data.motors;
-          this.addItemToCart(this.motors[0])
-          this.$store.commit('setMotores', this.motors)
+        if(!loading){
+        // data.motors[0].idUnique = data.motors[0].id + "motor";
+        // this.addItemToCart(data.motors[0]);
+        this.$store.commit("setMotores", data.motors);
+        // this.$store.commit("setMotorSelected", data.motors[0]);
+        console.log("recupere 2")
+
         }
       },
     },
-    paquetes:{
-      prefetch: false,
-      query:  GetPaquetesByIdVehiculoanio,
-      variables() {
-        return {
-          where: this.where,
-        };
+    paquetes: {
+      prefetch:false,
+      query: GetPaquetesByIdVehiculoanio,
+      variables(){
+        return{
+          where: this.where
+        }
+      },
+      result({ data, loading }) {
+         if(!loading){
+        // data.paquetes.idUnique = data.paquetes[0].id + "paquete";
+        // this.addItemToCart(data.paquetes[0]);
+         this.$store.commit("setPaquetes", data.paquetes);
+        // this.$store.commit("setPaqueteSelected", data.paquetes[0]);
+        console.log("recupere 3")
+
+         }
+      },
+    },
+    traccions: {
+      prefetch:false,
+      query: GetTraccionesByIdVehiculoAnio,
+      variables(){
+        return{
+          where: this.where
+        }
       },
       result({ data, loading }) {
         if (!loading) {
-          this.paquetes = data.paquetes;
-          this.addItemToCart(this.paquetes[0])
-          this.$store.commit('setPaquetes', this.paquetes)
+          // data.traccions[0].idUnique = data.traccions[0].id + "traccion";
+          // this.addItemToCart(data.traccions[0]);
+           this.$store.commit("setTracciones", data.traccions);
+          // this.$store.commit("setTraccionSelected", data.traccions[0]);
+        console.log("recupere 4")
+
         }
       },
     },
-    traccions:{
-      prefetch: false,
-      query:  GetTraccionesByIdVehiculoAnio,
-      variables() {
-        return {
-          where: this.where,
-        };
-      },
-      result({ data, loading }) {
-        if (!loading) {
-          this.addItemToCart(data.traccions[0])
-          this.$store.commit('setTracciones', data.traccions)
-        }
-      },
-    }
   },
   created() {
     this.idVehiculoanio = this.vehiculoSelected.vehiculoanio.id;
@@ -103,34 +106,34 @@ export default {
     };
   },
   mounted() {
-    this.getMotors();
-    this.getTransmisiones()
-    this.getTracciones()
-    this.getPaquetes()
-    console.log(this.tranmisiones)
+    // this.getMotors();
+    // this.getTransmisiones();
+    // this.getTracciones();
+    // this.getPaquetes();
+    console.log("jijijiajaija")
   },
   methods: {
-    ...mapActions(['addItemToCart']),
+    ...mapActions(["addItemToCart","deleteCartItem"]),
 
     getMotors() {
       this.$apollo.queries.motors.start();
     },
-    getTransmisiones(){
+    getTransmisiones() {
       this.$apollo.queries.transmisions.start();
     },
-    getTracciones(){
+    getTracciones() {
       this.$apollo.queries.traccions.start();
     },
-    getPaquetes(){
+    getPaquetes() {
       this.$apollo.queries.paquetes.start();
-    }
+    },
   },
   computed: {
-    ...mapGetters(["vehiculoSelected"]),
+    ...mapGetters(["vehiculoSelected", "getCart","motores","tracciones", "transmisiones","paquetes"]),
   },
   components: {
-    MainInformation
-  }
+    MainInformation,
+  },
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <ul v-if="!$apollo.loading">
+      <ul v-if="!$apollo.queries.traccionDetalles.loading">
           <li v-for="detalle in motorDetalle" :key="detalle.detalle">{{detalle.detalle}}</li>
       
           <li v-for="detalle in paqueteDetalle" :key="detalle.detalle">{{detalle.detalle}}</li>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters,mapActions } from "vuex";
 import GetMotorDetalleByIdMotor from '~/apollo/GetMotorDetalleByIdMotor'
 import GetPaqueteDetalleByIdPaquete from '~/apollo/GetPaqueteDetalleByIdPaquete'
 import GetTraccionDetalleByIdTraccion from '~/apollo/GetTraccionDetalleByIdTraccion'
@@ -35,15 +35,22 @@ export default {
         this.id=this.$route.params.id
     },
     mounted() {
-        if(this.tracciones.length>0){
-          this.$apollo.queries.traccionDetalles.start();  
-
-        }
-        if(this.motores.length>0){
-            this.$apollo.queries.motorDetalles.start();
-        }
-        if(this.paquetes.length>0){
-          this.$apollo.queries.paqueteDetalles.start();
+        this.setValoresPorDefault()
+        this.$apollo.queries.traccionDetalles.start();  
+        this.$apollo.queries.motorDetalles.start();
+        this.$apollo.queries.paqueteDetalles.start();
+        console.log("carrito",this.getCart)
+    },
+    methods: {
+        ...mapActions(["addItemToCart"]),
+        setValoresPorDefault(){
+            this.addItemToCart(this.motores[0]).then(()=>{
+                this.addItemToCart(this.transmisiones[0]).then(()=>{
+                    this.addItemToCart(this.paquetes[0]).then(()=>{
+                        this.addItemToCart(this.tracciones[0])
+                    });
+                });
+            });
         }
     },
     apollo:{
@@ -107,7 +114,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["motores","transmisiones", "paquetes", "motorDetalle", "paqueteDetalle", "tracciones", "traccionDetalle"]),
+        ...mapGetters(["getCart","motores","transmisiones", "paquetes", "motorDetalle", "paqueteDetalle", "tracciones", "traccionDetalle"]),
     },
 }
 </script>

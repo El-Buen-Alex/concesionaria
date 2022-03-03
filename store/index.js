@@ -4,6 +4,9 @@ export const state = () => ({
     featuredProducts: [],
     cartItems: [],
     vehiculoSelected:[],
+    motorSelected:[],
+    paqueteSelected:[],
+    traccionSelected:[],
     canPersonalice:false,
     CanSeeResumen:false,
     CanComprar:false,
@@ -23,7 +26,7 @@ export const getters = {
       state.cartItems.length < 1
         ? '0'
         : state.cartItems
-            .map((el) => +el.precio )
+            .map((el) => el.precio )
             .reduce((a, b) => a + b),
     vehiculoSelected:(state)=>state.vehiculoSelected,
     categories:(state)=>state.categories,
@@ -36,7 +39,11 @@ export const getters = {
     paqueteDetalle:(state)=>state.paqueteDetalle,
     motorDetalle:(state)=>state.motorDetalle,
     tracciones:(state)=>(state.tracciones),
-    traccionDetalle:(state)=>(state.traccionDetalle)
+    traccionDetalle:(state)=>(state.traccionDetalle),
+    motorSelected:(state)=>(state.motorSelected),
+    paqueteSelected:(state)=>(state.paqueteSelected),
+    traccionSelected:(state)=>(state.traccionSelected),
+
 }
 export const actions = {
     async addItemToCart({ commit }, cartItem) {
@@ -53,7 +60,7 @@ export const mutations = {
     setCartItem: (state, item) => state.cartItems.push(item),
     removeCartItem: (state, id) =>
       state.cartItems.splice(
-        state.cartItems.findIndex((el) => el.id === id),
+        state.cartItems.findIndex((el) => el.idUnique == id),
         1
       ),
       setVehiculoSelected:(state, vehiculo)=>(state.vehiculoSelected=vehiculo),
@@ -66,7 +73,10 @@ export const mutations = {
     setPaquetes:(state, paquetes)=>(state.paquetes=paquetes),
     setPaqueteDetalle:(state, paqueteDetalle)=>(state.paqueteDetalle=paqueteDetalle),
     setMotorDetalle:(state, motorDetalle)=>(state.motorDetalle=motorDetalle),
-    setTracciones:(state, traccion)=>(state.traccion=traccion),
-    setTraccionDettale:(state, traccionDetalle)=>(state.traccionDetalle=traccionDetalle)
+    setTracciones:(state, traccion)=>(state.tracciones=traccion),
+    setTraccionDettale:(state, traccionDetalle)=>(state.traccionDetalle=traccionDetalle),
+    setMotorSelected:(state, motorSelected)=>(state.motorSelected=motorSelected),
+    setPaqueteSelected:(state, paqueteSelected)=>(state.traccionDetalle=paqueteSelected),
+    setTraccionSelected:(state, traccionSelected)=>(state.traccionDetalle=traccionSelected),
 
   }
