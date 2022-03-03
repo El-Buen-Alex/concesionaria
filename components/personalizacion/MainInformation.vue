@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="show">
       <ul v-if="!$apollo.queries.traccionDetalles.loading">
           <li v-for="detalle in motorDetalle" :key="detalle.detalle">{{detalle.detalle}}</li>
       
@@ -14,7 +14,7 @@
                 <button class="w-full bg-red-600"><NuxtLink :to="`/products/${id}/personalizar/potencia`">Atras</NuxtLink></button>
           </div>
           <div class="w-2/3 px-2">
-                <button class="w-full bg-green-600"><NuxtLink :to="`/products/${id}/personalizar/potencia`">Siguiente</NuxtLink></button>
+                <button class="w-full bg-green-600" ><NuxtLink :to="`/products/${id}/personalizar/potencia`">Siguiente</NuxtLink></button>
           </div>    
       </div>
   </div>
@@ -28,29 +28,36 @@ import GetTraccionDetalleByIdTraccion from '~/apollo/GetTraccionDetalleByIdTracc
 export default {
     data() {
         return {
-            id:0
+            id:0,
+            show:false,
         }
     },
     created(){
         this.id=this.$route.params.id
     },
     mounted() {
-        this.setValoresPorDefault()
         this.$apollo.queries.traccionDetalles.start();  
         this.$apollo.queries.motorDetalles.start();
         this.$apollo.queries.paqueteDetalles.start();
         console.log("carrito",this.getCart)
+        this.setValoresPorDefault()
     },
     methods: {
-        ...mapActions(["addItemToCart"]),
+        ...mapActions(["addItemToCart","deleteCartItem"]),
         setValoresPorDefault(){
-            this.addItemToCart(this.motores[0]).then(()=>{
-                this.addItemToCart(this.transmisiones[0]).then(()=>{
-                    this.addItemToCart(this.paquetes[0]).then(()=>{
-                        this.addItemToCart(this.tracciones[0])
-                    });
-                });
-            });
+            if(!this.isSetDefault){
+                this.addItemToCart(this.motorSelected).then(()=>{
+                    this.addItemToCart(this.paqueteSelected).then(()=>{
+                        console.log(this.paqueteSelected)
+                    })
+
+                })
+                this.addItemToCart(this.traccionSelected)
+                this.addItemToCart(this.transmisionSelected)
+                this.show=true
+                 this.$store.commit("setIsSetDefault", true);
+
+            }
         }
     },
     apollo:{
@@ -114,7 +121,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["getCart","motores","transmisiones", "paquetes", "motorDetalle", "paqueteDetalle", "tracciones", "traccionDetalle"]),
+        ...mapGetters(["isSetDefault","motorSelected","paqueteSelected","transmisionSelected","traccionSelected","getCart","motores","transmisiones", "paquetes", "motorDetalle", "paqueteDetalle", "tracciones", "traccionDetalle"]),
     },
 }
 </script>

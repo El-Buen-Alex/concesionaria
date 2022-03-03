@@ -7,9 +7,11 @@ export const state = () => ({
     motorSelected:[],
     paqueteSelected:[],
     traccionSelected:[],
+    transmisionSelected:[],
     canPersonalice:false,
     CanSeeResumen:false,
     CanComprar:false,
+    isSetDefault:false,
     motores:[],
     transmisiones:[],
     paquetes:[],
@@ -35,6 +37,7 @@ export const getters = {
     CanComprar:(state)=>state.CanComprar,
     motores:(state)=>state.motores,
     transmisiones:(state)=>state.transmisiones,
+    transmisionSelected:(state)=>state.transmisionSelected,
     paquetes:(state)=>state.paquetes,
     paqueteDetalle:(state)=>state.paqueteDetalle,
     motorDetalle:(state)=>state.motorDetalle,
@@ -43,7 +46,7 @@ export const getters = {
     motorSelected:(state)=>(state.motorSelected),
     paqueteSelected:(state)=>(state.paqueteSelected),
     traccionSelected:(state)=>(state.traccionSelected),
-
+    isSetDefault:(state)=>(state.isSetDefault)
 }
 export const actions = {
     async addItemToCart({ commit }, cartItem) {
@@ -52,6 +55,12 @@ export const actions = {
     async deleteCartItem({ commit }, id) {
       await commit('removeCartItem', id)
     },
+    async deleteThenAdd({commit}, oldCartItem, newCartItem){
+      if(oldCartItem.idUnique){
+        commit('removeCartItem', oldCartItem.idUnique)
+      }
+       commit('setCartItem', newCartItem)
+    }
 }
 
 export const mutations = {
@@ -76,7 +85,8 @@ export const mutations = {
     setTracciones:(state, traccion)=>(state.tracciones=traccion),
     setTraccionDettale:(state, traccionDetalle)=>(state.traccionDetalle=traccionDetalle),
     setMotorSelected:(state, motorSelected)=>(state.motorSelected=motorSelected),
-    setPaqueteSelected:(state, paqueteSelected)=>(state.traccionDetalle=paqueteSelected),
-    setTraccionSelected:(state, traccionSelected)=>(state.traccionDetalle=traccionSelected),
-
+    setPaqueteSelected:(state, paqueteSelected)=>(state.paqueteSelected=paqueteSelected),
+    setTraccionSelected:(state, traccionSelected)=>(state.traccionSelected=traccionSelected),
+    setTransmisionSelected:(state, transmisionSelected)=>(state.transmisionSelected=transmisionSelected),
+    setIsSetDefault:(state, isSetDefault)=>(state.isSetDefault=isSetDefault)
   }

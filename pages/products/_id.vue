@@ -38,9 +38,11 @@ export default {
       result({ data, loading }) {
         if (!loading) {
           this.$store.commit("setVehiculoSelected", data.vehiculoimagen);
+          console.log("vehiculo slec")
         }
       },
     },
+    
   },
   created() {
     this.getVechiuloById();
