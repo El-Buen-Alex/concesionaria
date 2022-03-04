@@ -49,18 +49,14 @@ export const getters = {
     isSetDefault:(state)=>(state.isSetDefault)
 }
 export const actions = {
-    async addItemToCart({ commit }, cartItem) {
+    async addItemToCart({ commit }, {cartItem, campo}) {
+      cartItem.idUnique=cartItem.id+campo
       await commit('setCartItem', cartItem)
     },
     async deleteCartItem({ commit }, id) {
       await commit('removeCartItem', id)
     },
-    async deleteThenAdd({commit}, oldCartItem, newCartItem){
-      if(oldCartItem.idUnique){
-        commit('removeCartItem', oldCartItem.idUnique)
-      }
-       commit('setCartItem', newCartItem)
-    }
+    
 }
 
 export const mutations = {

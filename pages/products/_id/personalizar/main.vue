@@ -32,7 +32,7 @@ export default {
       result({ data, loading }) {
          if(!loading){
             console.log(this.where)
-         data.transmisions[0].idUnique = data.transmisions[0].id + "tranmision";
+         //data.transmisions[0].idUnique = data.transmisions[0].id + "tranmision";
          this.$store.commit("setTransmisiones", data.transmisions);
          this.$store.commit("setTransmisionSelected", data.transmisions[0]);
       
@@ -51,7 +51,7 @@ export default {
       result({ data, loading }) {
         if(!loading){
            console.log(this.where)
-         data.motors[0].idUnique = data.motors[0].id + "motor";
+         //data.motors[0].idUnique = data.motors[0].id + "motor";
         this.$store.commit("setMotores", data.motors);
         this.$store.commit("setMotorSelected", data.motors[0]);
         console.log("recupere 2")
@@ -70,7 +70,7 @@ export default {
       result({ data, loading }) {
          if(!loading){
             console.log(this.where)
-         data.paquetes.idUnique = data.paquetes[0].id + "paquete";
+         //data.paquetes.idUnique = data.paquetes[0].id + "paquete";
          this.$store.commit("setPaquetes", data.paquetes);
          this.$store.commit("setPaqueteSelected", data.paquetes[0]);
         console.log("recupere 3")
@@ -89,7 +89,7 @@ export default {
       result({ data, loading }) {
         if (!loading) {
           console.log(this.where)
-           data.traccions[0].idUnique = data.traccions[0].id + "traccion";
+          // data.traccions[0].idUnique = data.traccions[0].id + "traccion";
            this.$store.commit("setTracciones", data.traccions);
            this.$store.commit("setTraccionSelected", data.traccions[0]);
         console.log("recupere 4")

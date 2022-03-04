@@ -5,6 +5,7 @@
       :id="detalles.id"
       :name="nameInput"
       @click="selectMotor()"
+      :checked="checked"
     />
     <div class="max-w-sm rounded overflow-hidden shadow-lg h-64">
       <div class="font-bold text-xl mb-2 text-center">{{ name }}</div>
@@ -42,6 +43,9 @@ export default {
     nameInput: {
       type: String,
     },
+    checked:{
+      type:Boolean
+    }
   },
 };
 </script>

@@ -46,14 +46,14 @@ export default {
         ...mapActions(["addItemToCart","deleteCartItem"]),
         setValoresPorDefault(){
             if(!this.isSetDefault){
-                this.addItemToCart(this.motorSelected).then(()=>{
-                    this.addItemToCart(this.paqueteSelected).then(()=>{
+                this.addItemToCart({ cartItem:this.motorSelected, campo:"motor"}).then(()=>{
+                    this.addItemToCart({ cartItem:this.paqueteSelected, campo:"paquete"}).then(()=>{
                         console.log(this.paqueteSelected)
                     })
 
                 })
-                this.addItemToCart(this.traccionSelected)
-                this.addItemToCart(this.transmisionSelected)
+                this.addItemToCart({ cartItem:this.traccionSelected, campo:"traccion"})
+                this.addItemToCart({ cartItem:this.transmisionSelected, campo:"transmision"} )
                 this.show=true
                  this.$store.commit("setIsSetDefault", true);
 

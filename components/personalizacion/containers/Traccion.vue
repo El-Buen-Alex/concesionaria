@@ -1,16 +1,20 @@
 <template>
-  <div class="w-1/2 px-1" v-if="detalles.length>0">
+  <div class="w-1/2 px-1" v-if="detalles.length > 0">
     <CardItem
       :name="traccion.tipotraccion.tipo"
+      :checked="traccion.id == traccionSelected.id"
       :detalles="detalles"
       :nameInput="'tracciones'"
+      v-on:selectItem="addItem"
     />
   </div>
 </template>
 
 <script>
 import CardItem from "../../wrapers/CardItem.vue";
-import GetTraccionDetalleByIdTraccion from '~/apollo/GetTraccionDetalleByIdTraccion'
+import GetTraccionDetalleByIdTraccion from "~/apollo/GetTraccionDetalleByIdTraccion";
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -18,7 +22,16 @@ export default {
     };
   },
   mounted() {
-      this.$apollo.queries.traccionDetalles.start()
+    this.$apollo.queries.traccionDetalles.start();
+  },
+   methods: {
+    addItem() {
+      this.$emit("addItem", this.traccionSelected, {
+        cartItem: this.traccion,
+        campo: "traccion",
+      });
+      this.$store.commit("setTraccionSelected", this.traccion);
+    },
   },
   apollo: {
     traccionDetalles: {
@@ -36,7 +49,7 @@ export default {
       },
       result({ data, loading }) {
         if (!loading) {
-          this.detalles=data.traccionDetalles
+          this.detalles = data.traccionDetalles;
         }
       },
     },
@@ -48,6 +61,9 @@ export default {
   },
   components: {
     CardItem,
+  },
+  computed: {
+    ...mapGetters(["traccionSelected"]),
   },
 };
 </script>

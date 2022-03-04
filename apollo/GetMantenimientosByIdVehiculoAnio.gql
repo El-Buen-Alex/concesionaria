@@ -1,0 +1,10 @@
+query($where:JSON){
+  mantenimientos(where:$where){
+    id
+    name
+    precio
+    vehiculoanio{
+      id
+    }
+  }
+}

@@ -1,0 +1,10 @@
+query($where:JSON){
+  kits(where:$where){
+    id
+    name
+    precio
+    vehiculoanio{
+      id
+    }
+  }
+}

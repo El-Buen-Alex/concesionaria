@@ -1,0 +1,10 @@
+query($where:JSON){
+  individuals(where:$where){
+    id
+    name
+    precio
+    vehiculoanio{
+      id
+    }
+  }
+}

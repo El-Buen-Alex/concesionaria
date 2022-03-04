@@ -6,7 +6,7 @@
                     <div class="w-1/5 px-2 text-white">
                         {{category.name}}
                     </div>
-                    <div class="w-1/5 px-2 h-full"  v-for="vehiculoInformation in vehiculos" :key="vehiculoInformation.id" @click="addItemToCart(vehiculoInformation.vehiculoanio)">
+                    <div class="w-1/5 px-2 h-full"  v-for="vehiculoInformation in vehiculos" :key="vehiculoInformation.id" @click="addItemToCart({cartItem:vehiculoInformation.vehiculoanio, campo:'vehiculo'})">
                          <NuxtLink clasS=" flex items-center" :to="`/products/${vehiculoInformation.id}`">
                             <div class="bg-white rounded-lg shadow-md w-full ">
                                 <div class="h-32">
