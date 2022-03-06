@@ -9,18 +9,20 @@
           <span class="text-green-500">Total Aproximado: ${{getCartTotal}} </span>
       </div>
     </div>
-    <div class="cart fixed bottom-0 right-0 shadow-md m-3">
-      <p class="p-1 cartCount text-xs absolute top-0 right-0">olap</p>
-      <NuxtLink to="/cart">
-       Cart
-      </NuxtLink>
-    </div>
+    
+    <ModalCart
+    v-if="getCartTotal!=0"/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import ModalCart from '~/components/cart/modalCart.vue';
+
 export default {
+    components: {
+      ModalCart,
+    },
     data(){
         return{
             
@@ -41,12 +43,6 @@ export default {
 <style scoped>
 .ham-menu {
   background-color: #000;
-  width: 3em;
-  height: 3em;
-  border-radius: 1.5em;
-}
-.cart {
-  background-color: rgb(163, 87, 129);
   width: 3em;
   height: 3em;
   border-radius: 1.5em;
