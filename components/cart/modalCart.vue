@@ -20,12 +20,8 @@
                         </svg>
                     </button>
                 </div>
-                <div class="p-8">
-                    <p>{{cartItems[0].vehiculo.modelo}} ---> {{cartItems[0].precio}}</p>
-                    <p>{{cartItems[1].especificacion}} ---> {{cartItems[1].precio}}</p>
-                    <p>{{cartItems[3].tipotransmision.tipo}} ---> {{cartItems[3].precio}}</p>
-                    <p>{{cartItems[2].tipotraccion.tipo}} ---> {{cartItems[2].precio}}</p>
-                    <p>{{cartItems[4].name}} ---> {{cartItems[4].precio}}</p>
+                <div class="p-8" v-for="(item, index) in getCart" :key="index">
+                    <p>{{item.id}}</p>
                     <p>Total ---> {{getCartTotal}}</p>
                 </div>
             </div>
@@ -50,8 +46,8 @@ export default {
         },
     },
     computed:{
-        ...mapState(["cartItems"]),
-        ...mapGetters(["getCartTotal"]),
+        // ...mapState(["cartItems"]),
+        ...mapGetters(["getCartTotal","getCart"]),
     }
 }
 </script>

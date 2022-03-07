@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="this.vehiculoSelected.id">
     <MainInformation v-if="!$apollo.loading" />
   </div>
 </template>
@@ -31,12 +31,9 @@ export default {
       },
       result({ data, loading }) {
          if(!loading){
-            console.log(this.where)
          //data.transmisions[0].idUnique = data.transmisions[0].id + "tranmision";
          this.$store.commit("setTransmisiones", data.transmisions);
          this.$store.commit("setTransmisionSelected", data.transmisions[0]);
-      
-        console.log("recupere 1")
          }
       },
     },
@@ -53,8 +50,7 @@ export default {
            console.log(this.where)
          //data.motors[0].idUnique = data.motors[0].id + "motor";
         this.$store.commit("setMotores", data.motors);
-        this.$store.commit("setMotorSelected", data.motors[0]);
-        console.log("recupere 2")
+        this.$store.commit("setMotorSelected", data.motors[0])
 
         }
       },
@@ -73,7 +69,6 @@ export default {
          //data.paquetes.idUnique = data.paquetes[0].id + "paquete";
          this.$store.commit("setPaquetes", data.paquetes);
          this.$store.commit("setPaqueteSelected", data.paquetes[0]);
-        console.log("recupere 3")
 
          }
       },
@@ -92,24 +87,18 @@ export default {
           // data.traccions[0].idUnique = data.traccions[0].id + "traccion";
            this.$store.commit("setTracciones", data.traccions);
            this.$store.commit("setTraccionSelected", data.traccions[0]);
-        console.log("recupere 4")
 
         }
       },
     },
   },
-  created() {  
+  mounted() {  
     this.where = {
       "vehiculoanio": {
         "id": this.vehiculoSelected.vehiculoanio.id,
       },
     };
-  },
-  mounted() {
-    // this.getMotors();
-    // this.getTransmisiones();
-    // this.getTracciones();
-    // this.getPaquetes();
+    console.log("kpajo")
   },
   methods: {
     ...mapActions(["addItemToCart","deleteCartItem"]),

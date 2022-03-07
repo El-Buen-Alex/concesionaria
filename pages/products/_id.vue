@@ -37,26 +37,21 @@ export default {
       },
       result({ data, loading }) {
         if (!loading) {
+          console.log("uhmm",data.vehiculoimagen)
           this.$store.commit("setVehiculoSelected", data.vehiculoimagen);
-          console.log("vehiculo slec")
+          if(process.client){ 
+            localStorage.setItem("vehiculoSelected", JSON.stringify(data.vehiculoimagen))
+          }
         }
       },
-    },
-    
+    },   
   },
   created() {
-    this.getVechiuloById();
     this.activeCanPersonalizarLink();
   },
   methods: {
-    getVechiuloById() {
-      this.$apollo.queries.vehiculoimagen.start();
-    },
     activeCanPersonalizarLink() {
       this.$store.commit("setCanPersonalice", true);
-    },
-    addValorVehiculoPredeterminado() {
-      this.$store.commit("setVehiculoSelected", data.vehiculoimagen);
     },
    
   },
