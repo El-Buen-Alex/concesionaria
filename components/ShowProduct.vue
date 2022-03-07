@@ -60,7 +60,7 @@ export default {
   },
   mounted() {
     this.setUrlImgPreview();
-    this.goToShowInformation();
+    //this.goToShowInformation();
   },
   created() {
     if (process.client) {

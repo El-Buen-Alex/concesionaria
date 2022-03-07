@@ -37,7 +37,6 @@ export default {
       },
       result({ data, loading }) {
         if (!loading) {
-          console.log("uhmm",data.vehiculoimagen)
           this.$store.commit("setVehiculoSelected", data.vehiculoimagen);
           if(process.client){ 
             localStorage.setItem("vehiculoSelected", JSON.stringify(data.vehiculoimagen))

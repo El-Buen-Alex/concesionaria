@@ -62,7 +62,14 @@ export const actions = {
 export const mutations = {
     setProducts: (state, products) => (state.allProducts = products),
     setFeaturedProducts: (state, products) => (state.featuredProducts = products),
-    setCartItem: (state, item) => state.cartItems.push(item),
+    setCart:(state, cartItem)=>(state.cartItems=cartItem),
+    setCartItem: (state, item) => {
+      const carro=state.cartItems
+      carro.push(item)
+      if(process.client){
+        localStorage.setItem("cartItem", JSON.stringify(carro))
+      }
+    },
     removeCartItem: (state, id) =>
       state.cartItems.splice(
         state.cartItems.findIndex((el) => el.idUnique == id),

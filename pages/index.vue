@@ -23,7 +23,11 @@ export default {
       vehiculoimagens: [],
     };
   },
-  mounted() {},
+  mounted() {
+    if(process.client){
+      
+    }
+  },
   methods: {},
   apollo: {
     categorias: {

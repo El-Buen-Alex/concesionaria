@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="this.getCart.length>0">
     <div class="flex">
       <div class="w-1/4">
         <button :class="'w-full'+ (activeContent=='KIT'? ' border-b-4 border-indigo-500': '')" @click="showAccesorios('KIT')">KIT</button>
@@ -24,10 +24,9 @@
     </div>
     <div class="w-full flex px-1">
       <div class="w-1/3 px-2">
-        <button class="w-full bg-red-600">
-          <NuxtLink :to="`/products/${this.$route.params.id}/personalizar/potencia`"
-            >Atras</NuxtLink
-          >
+        <button  @click="$router.go(-1)" class="w-full bg-red-600">
+        
+            >Atras
         </button>
       </div>
       <div class="w-2/3 px-2">
@@ -105,6 +104,9 @@ export default {
     },
     mounted() {
         this.showAccesorios('KIT')
+        if(process.client && this.getCart.length==0){
+            this.$store.commit("setCart",JSON.parse( localStorage.getItem("cartItem") || {}))
+        }
     }, 
     methods: {
         ...mapActions(["addItemToCart","deleteCartItem"]),

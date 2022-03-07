@@ -37,10 +37,8 @@
     </div>
     <div class="w-full flex px-1">
       <div class="w-1/3 px-2">
-        <button class="w-full bg-red-600">
-          <NuxtLink :to="`/products/${id}/personalizar/potencia`"
-            >Atras</NuxtLink
-          >
+        <button  @click="$router.go(-1)" class="w-full bg-red-600">
+         Atras
         </button>
       </div>
       <div class="w-2/3 px-2">
@@ -64,6 +62,7 @@ import Traccion from "~/components/personalizacion/containers/Traccion.vue";
 export default {
   data() {
     return{
+     
     }
   },
   computed: {
@@ -82,19 +81,53 @@ export default {
     Transmision,
     Traccion,
   },
-  created() {
+  mounted() {
+    if(process.client && this.motores.length==0){
+      this.$store.commit(
+        "setMotores",
+        JSON.parse(localStorage.getItem("motores") || {})
+      );
+       this.$store.commit(
+        "setMotorSelected",
+        JSON.parse(localStorage.getItem("motorSelected") || {})
+      );
+      this.$store.commit(
+        "setTracciones",
+        JSON.parse(localStorage.getItem("tracciones") || {})
+      );
+       this.$store.commit(
+        "setTraccionSelected",
+        JSON.parse(localStorage.getItem("traccionSelected") || {})
+      );
+      this.$store.commit(
+        "setTransmisiones",
+        JSON.parse(localStorage.getItem("transmisiones") || {})
+      );
+       this.$store.commit(
+        "setTransmisionSelected",
+        JSON.parse(localStorage.getItem("transmisionSelected") || {})
+      );
+    }
   },
   methods: {
     ...mapActions(["addItemToCart", "deleteCartItem"]),
     addAndDeleteItem(prevItem, newItem) {
       this.deleteCartItem(prevItem.idUnique).then(() => {
         this.addItemToCart(newItem);
+        const {campo}= newItem
+        const {cartItem}=newItem
+        if(process.client){
+          localStorage.setItem(campo+"Selected", JSON.stringify(cartItem))
+        }
       });
     },
     goToPaquetes(){
       if(this.motorSelected.id && this.traccionSelected.id && this.transmisionSelected.id>0){
         this.$router.push(`/products/${this.$route.params.id}/personalizar/paquetes`)
       }
+    },
+    goBack(){
+      this.$router.go(-1)
     }
   },
 };

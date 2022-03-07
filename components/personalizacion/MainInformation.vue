@@ -20,10 +20,9 @@
     </ul>
     <div class="w-full flex px-1">
       <div class="w-1/3 px-2">
-        <button class="w-full bg-red-600">
-          <NuxtLink :to="`/products/${id}/personalizar/potencia`"
-            >Atras</NuxtLink
-          >
+        <button @click="$router.go(-1)" class="w-full bg-red-600">
+          
+            Atras
         </button>
       </div>
       <div class="w-2/3 px-2">

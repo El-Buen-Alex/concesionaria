@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.vehiculoSelected.id">
+  <div v-if="this.vehiculoSelected!==[]">
     <MainInformation v-if="!$apollo.loading" />
   </div>
 </template>
@@ -31,9 +31,13 @@ export default {
       },
       result({ data, loading }) {
          if(!loading){
-         //data.transmisions[0].idUnique = data.transmisions[0].id + "tranmision";
-         this.$store.commit("setTransmisiones", data.transmisions);
-         this.$store.commit("setTransmisionSelected", data.transmisions[0]);
+         
+          this.$store.commit("setTransmisiones", data.transmisions);
+          this.$store.commit("setTransmisionSelected", data.transmisions[0]);
+          if(process.client){
+            localStorage.setItem("transmisiones", JSON.stringify(data.transmisions))
+            localStorage.setItem("transmisionSelected", JSON.stringify(data.transmisions[0]))
+          }
          }
       },
     },
@@ -48,10 +52,13 @@ export default {
       result({ data, loading }) {
         if(!loading){
            console.log(this.where)
-         //data.motors[0].idUnique = data.motors[0].id + "motor";
+         
         this.$store.commit("setMotores", data.motors);
         this.$store.commit("setMotorSelected", data.motors[0])
-
+        if(process.client){
+            localStorage.setItem("motores", JSON.stringify(data.motors))
+            localStorage.setItem("motorSelected", JSON.stringify(data.motors[0]))
+          }
         }
       },
     },
@@ -65,11 +72,14 @@ export default {
       },
       result({ data, loading }) {
          if(!loading){
-            console.log(this.where)
-         //data.paquetes.idUnique = data.paquetes[0].id + "paquete";
+           
+         
          this.$store.commit("setPaquetes", data.paquetes);
          this.$store.commit("setPaqueteSelected", data.paquetes[0]);
-
+          if(process.client){
+            localStorage.setItem("paquetes", JSON.stringify(data.paquetes))
+            localStorage.setItem("paqueteSelected", JSON.stringify(data.paquetes[0]))
+          }
          }
       },
     },
@@ -83,11 +93,14 @@ export default {
       },
       result({ data, loading }) {
         if (!loading) {
-          console.log(this.where)
-          // data.traccions[0].idUnique = data.traccions[0].id + "traccion";
+         
+         
            this.$store.commit("setTracciones", data.traccions);
            this.$store.commit("setTraccionSelected", data.traccions[0]);
-
+          if(process.client){
+            localStorage.setItem("tracciones", JSON.stringify(data.traccions))
+            localStorage.setItem("traccionSelected", JSON.stringify(data.traccions[0]))
+          }
         }
       },
     },
@@ -98,7 +111,6 @@ export default {
         "id": this.vehiculoSelected.vehiculoanio.id,
       },
     };
-    console.log("kpajo")
   },
   methods: {
     ...mapActions(["addItemToCart","deleteCartItem"]),
