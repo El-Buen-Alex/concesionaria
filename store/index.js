@@ -1,8 +1,8 @@
 export const state = () => ({
     allProducts: [],
-    categories:[],
     featuredProducts: [],
     cartItems: [],
+    categories:[],
     vehiculoSelected:[],
     motorSelected:[],
     paqueteSelected:[],
@@ -19,6 +19,9 @@ export const state = () => ({
     motorDetalle:[],
     tracciones:[],
     traccionDetalle:[],
+    mapaBox:[],
+    marksers:[],
+    concesionariosList:[],
 })
 export const getters = {
     allProducts: (state) => state.allProducts,
@@ -30,7 +33,7 @@ export const getters = {
         : state.cartItems
             .map((el) => el.precio )
             .reduce((a, b) => a + b),
-    vehiculoSelected:(state)=>state.vehiculoSelected,
+    vehiculoSelected:(state)=>state.vehiculoSelected,  
     categories:(state)=>state.categories,
     CanPersonalice:(state)=>state.canPersonalice,
     CanSeeResumen:(state)=>state.CanSeeResumen,
@@ -46,7 +49,10 @@ export const getters = {
     motorSelected:(state)=>(state.motorSelected),
     paqueteSelected:(state)=>(state.paqueteSelected),
     traccionSelected:(state)=>(state.traccionSelected),
-    isSetDefault:(state)=>(state.isSetDefault)
+    isSetDefault:(state)=>(state.isSetDefault),
+    mapaBox:(state)=>state.mapaBox,
+    markers:(state)=>state.markers,
+    concesionariosList:(state)=>state.concesionariosList
 }
 export const actions = {
     async addItemToCart({ commit }, {cartItem, campo}) {
@@ -75,8 +81,8 @@ export const mutations = {
         state.cartItems.findIndex((el) => el.idUnique == id),
         1
       ),
-      setVehiculoSelected:(state, vehiculo)=>(state.vehiculoSelected=vehiculo),
     setCategories:(state, categories)=>(state.categories=categories),
+    setVehiculoSelected:(state, vehiculo)=>(state.vehiculoSelected=vehiculo),
     setCanPersonalice:(state, canPersonalice)=>(state.canPersonalice=canPersonalice),
     setCanSeeResumen:(state, CanSeeResumen)=>(state.CanSeeResumen=CanSeeResumen),
     SetCanComprar:(state, CanComprar)=>(state.CanComprar=CanComprar),
@@ -91,5 +97,7 @@ export const mutations = {
     setPaqueteSelected:(state, paqueteSelected)=>(state.paqueteSelected=paqueteSelected),
     setTraccionSelected:(state, traccionSelected)=>(state.traccionSelected=traccionSelected),
     setTransmisionSelected:(state, transmisionSelected)=>(state.transmisionSelected=transmisionSelected),
-    setIsSetDefault:(state, isSetDefault)=>(state.isSetDefault=isSetDefault)
+    setIsSetDefault:(state, isSetDefault)=>(state.isSetDefault=isSetDefault),
+    setMapa:(state, mapaBox)=>(state.mapaBox=mapaBox),
+    setConcesionarios:(state, concesionariosList)=>(state.concesionariosList=concesionariosList)
   }

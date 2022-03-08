@@ -1,0 +1,13 @@
+query{
+  concesionarios{
+    id
+    name
+    Calles
+    longitud
+    latitud
+    provincia{
+      id
+      name
+    }
+  }
+}
