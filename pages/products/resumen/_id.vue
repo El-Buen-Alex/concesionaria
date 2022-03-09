@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center mt-3">
     <div class="flex flex-wrap w-5/6" v-if="vehiculoSelected.id">
-      <div class="w-full sm:w-1/2 mb-3 px-1">
+      <!-- <div class="w-full sm:w-1/2 mb-3 px-1">
         <img
           class="w-full max-h-full"
           :src="RouteServer + vehiculoSelected.url_imagen.url"
@@ -12,6 +12,9 @@
             RESUMEN
           </h1>
         </div>
+      </div> -->
+      <div class="w-full sm:w-1/2 mb-3 px-1">
+    <ResumenCompra :vehiculoSelected="this.vehiculoSelected" />
       </div>
       <div class="w-full sm:w-1/2 mb-3 px-1">
         <h1 class="text-white bg-gray-800 text-center font-bold text-2xl">
@@ -42,6 +45,7 @@
 import Concesionarios from "~/components/Resumen/Concesionarios.vue";
 import { mapGetters } from "vuex";
 import GetConcesionarios from "~/apollo/GetConcesionarios";
+import ResumenCompra from '~/components/Resumen/ResumenCompra.vue'
 export default {
   mounted() {},
   created() {
@@ -83,6 +87,7 @@ export default {
   },
   components: {
     Concesionarios,
+    ResumenCompra,
   },
 };
 </script>
