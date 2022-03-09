@@ -25,6 +25,63 @@ export default {
     this.prntLocations();
   },
   methods: {
+    moveMapTo(longitud, latitud){
+      this.mapa.flyTo({
+        center:[longitud, latitud],
+        zoom:14
+      })
+    },
+    drawRoute(destino, fullRoutePoints){
+      const start=fullRoutePoints[0]
+      const end= fullRoutePoints[fullRoutePoints.length - 1]
+      const bounds = new mapboxgl.LngLatBounds([start[0], start[1]], [start[0], start[1]])
+      //agregamos punto a cada bound-borde
+      fullRoutePoints.forEach(coordenada=>{
+        const newCoord=[coordenada[0], coordenada[1]]
+        bounds.extend(newCoord)
+      })
+      //mostrando en el map
+      this.mapa.fitBounds(bounds,{
+        padding:300
+      })
+      //Polyline 
+      const sourceData={
+         type:'geojson',
+         data:{
+           type:'FeatureCollection',
+           features:[
+             {
+               type:'Feature',
+               properties:{},
+               geometry:{
+                 type:'LineString',
+                 coordinates:fullRoutePoints
+               }
+             }
+           ]
+         }
+      };
+      if(this.mapa.getLayer('RouteString')){
+        this.mapa.removeLayer('RouteString')
+        this.mapa.removeSource('RouteString')
+      }
+      this.mapa.addSource('RouteString', sourceData)
+      this.mapa.addLayer({
+        id:'RouteString',
+        type:'line',
+        source:'RouteString',
+        layout:{
+          'line-cap':'round',
+          'line-join':'round'
+        },
+        paint:{
+          'line-color':'#3bb2d0',
+          'line-width':3
+        }
+      });
+
+      console.log("que raro")
+    },
     async prntLocations() {
       await this.setCenter().then(() => {
          this.createMap().then(() => {
@@ -37,6 +94,10 @@ export default {
         navigator.geolocation.getCurrentPosition((position) => {
           this.longitud = position.coords.longitude;
           this.latitud = position.coords.latitude;
+          const ubication=[]
+          ubication.push(this.longitud)
+          ubication.push(this.latitud)
+          this.$store.commit("setUbicacionUser", ubication)
           return resolve(true);
         });
       });
@@ -88,13 +149,12 @@ export default {
         this.marker = new mapboxgl.Marker()
           .setLngLat([this.longitud, this.latitud])
           .addTo(this.mapa);
-
          resolve(true);
       });
     },
   },
   computed: {
-    ...mapGetters(["concesionariosList"]),
+    ...mapGetters(["concesionariosList", "ubicacionUser"]),
   },
 };
 </script>

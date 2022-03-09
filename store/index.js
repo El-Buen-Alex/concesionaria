@@ -21,7 +21,9 @@ export const state = () => ({
     traccionDetalle:[],
     mapaBox:[],
     marksers:[],
+    ubicacionUser:[],
     concesionariosList:[],
+    concesionarioSelected:[]
 })
 export const getters = {
     allProducts: (state) => state.allProducts,
@@ -52,7 +54,9 @@ export const getters = {
     isSetDefault:(state)=>(state.isSetDefault),
     mapaBox:(state)=>state.mapaBox,
     markers:(state)=>state.markers,
-    concesionariosList:(state)=>state.concesionariosList
+    concesionariosList:(state)=>state.concesionariosList,
+    ubicacionUser:(state)=>state.ubicacionUser,
+    concesionarioSelected:(state)=>state.concesionarioSelected,
 }
 export const actions = {
     async addItemToCart({ commit }, {cartItem, campo}) {
@@ -99,5 +103,7 @@ export const mutations = {
     setTransmisionSelected:(state, transmisionSelected)=>(state.transmisionSelected=transmisionSelected),
     setIsSetDefault:(state, isSetDefault)=>(state.isSetDefault=isSetDefault),
     setMapa:(state, mapaBox)=>(state.mapaBox=mapaBox),
-    setConcesionarios:(state, concesionariosList)=>(state.concesionariosList=concesionariosList)
+    setConcesionarios:(state, concesionariosList)=>(state.concesionariosList=concesionariosList),
+    setUbicacionUser:(state, ubicacionUser)=>(state.ubicacionUser=ubicacionUser),
+    setConcesionarioSelected:(state, concesionarioSelected)=>(state.concesionarioSelected=concesionarioSelected)
   }

@@ -23,30 +23,58 @@
           focus:border-gray-800
           focus:outline-none
         "
+        @change="getRoute"
+        v-model="selected"
       >
-        <option class="w-4/5" selected disabled>Select an Agency..</option>
-        <option class="text-sm w-64"  v-for="concesionario in this.concesionariosList" :key="concesionario.id" :value="concesionario.id">{{concesionario.name}} - {{concesionario.Calles}} - {{concesionario.provincia.name}}</option>
+        <option class="w-4/5" disabled value="-1">Select an Agency..</option>
+        <option
+          class="text-sm w-64"
+          v-for="(concesionario, index) in this.concesionariosList"
+          :key="concesionario.id"
+          :value="index"
+        >
+          {{ concesionario.name }} - {{ concesionario.Calles }} -
+          {{ concesionario.provincia.name }}
+        </option>
       </select>
     </div>
     <div class="flex">
-        <Map />
+      <Map ref="mapComponent" />
     </div>
   </div>
 </template>
 
 <script>
-import Map from './Map.vue'
+import Map from "./Map.vue";
 import { mapGetters } from "vuex";
+import directionsApi from "~/apis/MapApi";
 export default {
   data() {
-    return {};
+    return { selected: "-1" };
+  },
+  methods: {
+    async getRoute() {
+      const destino = this.concesionariosList[this.selected];
+      this.$store.commit("setConcesionarioSelected", destino)
+      await directionsApi
+        .get(
+          `${this.ubicacionUser[0]},${this.ubicacionUser[1]};${destino.longitud},${destino.latitud}`
+        )
+        .then((result) => {
+          this.$refs.mapComponent.drawRoute(
+            destino,
+            result.data.routes[0].geometry.coordinates
+          );
+          this.$refs.mapComponent.moveMapTo(destino.longitud, destino.latitud);
+        });
+    },
   },
   components: {
-      Map
+    Map,
   },
-  computed:{
-     ...mapGetters(["concesionariosList"]),
-  }
+  computed: {
+    ...mapGetters(["concesionariosList", "ubicacionUser"]),
+  },
 };
 </script>
 

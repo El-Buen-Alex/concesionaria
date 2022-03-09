@@ -6,7 +6,7 @@
           class="w-full max-h-full"
           :src="RouteServer + vehiculoSelected.url_imagen.url"
           alt="vehiculo Seleccionado"
-        >
+        />
         <div>
           <h1 class="text-white bg-gray-800 text-center font-bold text-2xl">
             RESUMEN
@@ -17,7 +17,22 @@
         <h1 class="text-white bg-gray-800 text-center font-bold text-2xl">
           ECOGE UN CONCESIONARIO
         </h1>
-        <Concesionarios v-if="this.concesionariosList.length > 0" :concesionarios="this.concesionariosList" />
+        <Concesionarios
+          v-if="this.concesionariosList.length > 0"
+          :concesionarios="this.concesionariosList"
+        />
+        <div class="w-full flex  mt-5">
+          <div class="w-1/3 px-1">
+            <button @click="$router.go(-1)" class="w-full bg-red-600">
+              >Atras
+            </button>
+          </div>
+          <div class="w-2/3 px-2">
+            <button class="w-full bg-green-600"  @click="goToComprar()">
+                Siguiente
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -42,6 +57,13 @@ export default {
       }
     }
   },
+  methods: {
+    goToComprar(){
+      if(this.concesionarioSelected.id){
+        this.$router.push(`/products/comprar/${this.$route.params.id}`)
+      }
+    }
+  },
   apollo: {
     concesionarios: {
       prefetch: false,
@@ -49,16 +71,12 @@ export default {
       result({ data, loading }) {
         if (!loading) {
           this.$store.commit("setConcesionarios", data.concesionarios);
-
-          // if(process.client){
-          //   localStorage.setItem("vehiculoSelected", JSON.stringify(data.vehiculoimagen))
-          // }
         }
       },
     },
   },
   computed: {
-    ...mapGetters(["vehiculoSelected", "concesionariosList"]),
+    ...mapGetters(["vehiculoSelected", "concesionariosList", "concesionarioSelected"]),
     RouteServer() {
       return process.env.baseUrl;
     },
