@@ -6,7 +6,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import GetTransmisionesByIdVehiculoanio from "../../../../apollo/GetTransmisionesByIdVehiculoanio";
+import GetTransmisionesByIdVehiculoAnio from "../../../../apollo/GetTransmisionesByIdVehiculoAnio";
 import GetMotorsByIdVehiculoAnio from "../../../../apollo/GetMotorsByIdVehiculoAnio";
 import GetPaquetesByIdVehiculoanio from "../../../../apollo/GetPaquetesByIdVehiculoanio";
 import GetTraccionesByIdVehiculoAnio from "../../../../apollo/GetTraccionesByIdVehiculoAnio";
@@ -23,7 +23,7 @@ export default {
   apollo: {
     transmisions: {
       prefetch:false,
-      query: GetTransmisionesByIdVehiculoanio,
+      query: GetTransmisionesByIdVehiculoAnio,
       variables(){
         return{
           where: this.where
