@@ -1,18 +1,18 @@
 <template>
-    <div class="flex justify-center mt-2 h-48 ">
+    <div class="flex justify-center mt-2 h-auto ">
         <div class="w-5/6  bg-black h-full">
                 <div v-if="$apollo.loading">Loading..-</div>
-                <div v-else class="flex items-center">
-                    <div class="w-1/5 px-2 text-white">
+                <div v-else class="grid grid-cols-4 gap-4 py-5 ">
+                    <div class=" px-2 text-white">
                         {{category.name}}
                     </div>
-                    <div class="w-1/5 px-2 h-full"  v-for="vehiculoInformation in vehiculos" :key="vehiculoInformation.id" @click="AddVehiculoToCart(vehiculoInformation)">
-                         <NuxtLink clasS=" flex items-center" :to="`/products/${vehiculoInformation.id}`">
-                            <div class="bg-white rounded-lg shadow-md w-full ">
-                                <div class="h-32">
-                                <img class="w-full h-full" :src="'http://localhost:1337'+vehiculoInformation.url_imagen.url" :alt="vehiculoInformation.url_imagen.name" srcset="">
+                    <div class=" px-2 h-full  shadow-md w-full hover:border-4 hover:border-yellow-600 hover:rounded-md"  v-for="vehiculoInformation in vehiculos" :key="vehiculoInformation.id" @click="AddVehiculoToCart(vehiculoInformation)">
+                         <NuxtLink clasS=" flex items-center hover:p-3" :to="`/products/${vehiculoInformation.id}`">
+                            <div class="bg-white w-full">
+                                <div class="h-36 flex justify-center overflow:hidden">
+                                    <img class="max-w-full max-h-full" :src="'http://localhost:1337'+vehiculoInformation.url_imagen.url" :alt="vehiculoInformation.url_imagen.name" srcset="">
                                 </div>
-                                <p class="w-full fw-bold  flex justify-center">{{vehiculoInformation.vehiculoanio.vehiculo.modelo}}</p>
+                                <p class="w-full font-bold text-xl flex justify-center">{{vehiculoInformation.vehiculoanio.vehiculo.modelo}}</p>
                             </div>
                         </NuxtLink>
                     </div>
@@ -67,16 +67,16 @@ export default {
                 if (!loading) {
                      this.vehiculos=data.vehiculoimagens
                      //cuando ya estemos en prod
-                    // if(this.vehiculos.length>1){
-                    //      let hash={}
-                    //  this.vehiculos=this.vehiculos.filter((elemento)=>{
-                    //      let exists = !hash[elemento.vehiculoanio.vehiculo.id];
-                    //     hash[elemento.vehiculoanio.vehiculo.id] = true;
-                    //     return exists;
-                    //  })
-                    //  hash={}
+                     if(this.vehiculos.length>1){
+                      let hash={}
+                     this.vehiculos=this.vehiculos.filter((elemento)=>{
+                         let exists = !hash[elemento.vehiculoanio.vehiculo.id];
+                        hash[elemento.vehiculoanio.vehiculo.id] = true;
+                        return exists;
+                  })
+                      hash={}
                     //  console.log( this.vehiculos)
-                    // }
+                    }
                     
                 }
             },

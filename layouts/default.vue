@@ -3,10 +3,9 @@
         <div class="h-1/6 bg-current">
             <Nav  />
         </div>
-       <div class="h-4/6 flex justify-center">
-            <div class="h-full flex items-center">
+       <div >
+           
                 <Nuxt/>
-            </div>
        </div>
        <div class="h-1/6 bg-current">
 
