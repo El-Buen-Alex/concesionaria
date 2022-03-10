@@ -3,9 +3,9 @@ module.exports = {
     variants: {
         extend: {
             borderStyle: ['responsive', 'hover'],
-            borderWidth: ['responsive', 'hover'],
-            borderColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
-            borderRadius: ['responsive', 'hover'],
+            borderWidth: ['responsive', 'hover', 'active'],
+            borderColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'active'],
+            borderRadius: ['responsive', 'hover', 'active'],
             padding:["hover"]
             },
     },

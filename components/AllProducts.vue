@@ -1,14 +1,14 @@
 <template>
     <div class="flex justify-center mt-2 h-auto ">
-        <div class="w-5/6  bg-black h-full">
+        <div class="w-5/6  bg-black h-full rounded-sm">
                 <div v-if="$apollo.loading">Loading..-</div>
-                <div v-else class="grid grid-cols-4 gap-4 py-5 ">
+                <div v-else class="grid grid-cols-2  lg:grid-cols-4 gap-4 py-5 ">
                     <div class=" px-2 text-white">
                         {{category.name}}
                     </div>
                     <div class=" px-2 h-full  shadow-md w-full hover:border-4 hover:border-yellow-600 hover:rounded-md"  v-for="vehiculoInformation in vehiculos" :key="vehiculoInformation.id" @click="AddVehiculoToCart(vehiculoInformation)">
                          <NuxtLink clasS=" flex items-center hover:p-3" :to="`/products/${vehiculoInformation.id}`">
-                            <div class="bg-white w-full">
+                            <div class="bg-white w-full rounded-sm overflow-hidden">
                                 <div class="h-36 flex justify-center overflow:hidden">
                                     <img class="max-w-full max-h-full" :src="'http://localhost:1337'+vehiculoInformation.url_imagen.url" :alt="vehiculoInformation.url_imagen.name" srcset="">
                                 </div>

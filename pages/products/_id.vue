@@ -4,7 +4,7 @@
     <div v-else class="w-5/6">
       <div class="flex">
         <div class="w-1/2 px-3">
-          <ShowProduct :vehiculoInformation="vehiculoSelected" />
+          <ShowProduct  />
         </div>
         <div class="w-1/2 px-3">
           <NuxtChild></NuxtChild>
@@ -38,9 +38,7 @@ export default {
       result({ data, loading }) {
         if (!loading) {
           this.$store.commit("setVehiculoSelected", data.vehiculoimagen);
-          if(process.client){ 
-            localStorage.setItem("vehiculoSelected", JSON.stringify(data.vehiculoimagen))
-          }
+          
         }
       },
     },   

@@ -2,7 +2,7 @@
   <div v-if="this.vehiculoSelected.id">
     <div>
       <h1 class="text-5xl text-center bg-black text-white p-2 rounded-lg">
-        {{ vehiculoInformation.vehiculoanio.vehiculo.modelo }}
+        {{ vehiculoSelected.vehiculoanio.vehiculo.modelo }}
       </h1>
     </div>
     <div class="w-full">
@@ -15,7 +15,7 @@
       </div>
       <div class="flex">
         <!-- OJO -->
-        <div
+        <button
           class="w-1/3"
           v-for="vehiculoimagen in vehiculoImagenesSelected"
           :key="vehiculoimagen.id"
@@ -25,18 +25,16 @@
             :id="vehiculoimagen.id"
             name="drone"
             @click="refreshPreview(vehiculoimagen)"
-            :checked="vehiculoimagen.id == vehiculoInformation.id ? true : ''"
+            :checked="vehiculoimagen.id == vehiculoSelected.id ? true : ''"
           />
           <img
             :src="RouteServer + vehiculoimagen.url_imagen.url"
             :alt="vehiculoimagen.vehiculoanio.vehiculo.modelo"
-            class="w-100"
+            class="w-100 "
           />
-        </div>
+        </button>
       </div>
     </div>
-
-    <!-- <NuxtLink :to="`/products/${vehiculoInformation.id}/personalizar/main`">Child 2</NuxtLink> -->
   </div>
 </template>
 
@@ -53,14 +51,8 @@ export default {
       },
     };
   },
-  props: {
-    vehiculoInformation: {
-      required: true,
-    },
-  },
   mounted() {
     this.setUrlImgPreview();
-    //this.goToShowInformation();
   },
   created() {
     if (process.client) {
@@ -74,6 +66,10 @@ export default {
   methods: {
     refreshPreview(vehiculoimagen) {
       this.url_previe_img = vehiculoimagen.url_imagen.url;
+      this.$store.commit(
+        "setVehiculoSelected",vehiculoimagen)
+      localStorage.setItem("vehiculoSelected", JSON.stringify(vehiculoimagen))
+     
     },
     setUrlImgPreview() {
       this.url_previe_img = this.vehiculoSelected.url_imagen.url;
