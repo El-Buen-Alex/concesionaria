@@ -4,6 +4,7 @@ export const state = () => ({
     cartItems: [],
     categories:[],
     vehiculoSelected:[],
+    startProcess:false,
     motorSelected:[],
     paqueteSelected:[],
     traccionSelected:[],
@@ -57,6 +58,7 @@ export const getters = {
     concesionariosList:(state)=>state.concesionariosList,
     ubicacionUser:(state)=>state.ubicacionUser,
     concesionarioSelected:(state)=>state.concesionarioSelected,
+    startProcess:(state)=>state.startProcess,
 }
 export const actions = {
     async addItemToCart({ commit }, {cartItem, campo}) {
@@ -105,5 +107,6 @@ export const mutations = {
     setMapa:(state, mapaBox)=>(state.mapaBox=mapaBox),
     setConcesionarios:(state, concesionariosList)=>(state.concesionariosList=concesionariosList),
     setUbicacionUser:(state, ubicacionUser)=>(state.ubicacionUser=ubicacionUser),
-    setConcesionarioSelected:(state, concesionarioSelected)=>(state.concesionarioSelected=concesionarioSelected)
+    setConcesionarioSelected:(state, concesionarioSelected)=>(state.concesionarioSelected=concesionarioSelected),
+    setStartProcess:(state, startProcess)=>(state.startProcess=startProcess)
   }

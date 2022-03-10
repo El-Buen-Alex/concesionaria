@@ -1,5 +1,7 @@
 module.exports = {
-    theme: {},
+    theme: {
+       
+    },
     variants: {
         extend: {
             borderStyle: ['responsive', 'hover'],

@@ -39,7 +39,7 @@
       </select>
     </div>
     <div class="flex">
-      <Map ref="mapComponent" />
+      <Map  ref="mapComponent" />
     </div>
   </div>
 </template>

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="font-bold text-xl text-center text-white bg-gray-700 rounded-sm mt-3 lg:mt-0">INFORMACION PRINCIPAL</h1>
     <ul v-if="!$apollo.queries.traccionDetalles.loading">
       <li v-for="detalle in motorDetalle" :key="detalle.detalle">
         {{ detalle.detalle }}
@@ -20,7 +21,7 @@
     </ul>
     <div class="w-full flex px-1">
       <div class="w-1/3 px-2">
-        <button @click="$router.go(-1)" class="w-full bg-red-600">
+        <button @click="goToInicio()" class="w-full bg-red-600">
           
             Atras
         </button>
@@ -82,6 +83,11 @@ export default {
         this.$store.commit("setIsSetDefault", true);
       }
     },
+    goToInicio(){
+      this.$store.commit("setStartProcess",false)
+      localStorage.setItem("startProcess", false)
+      this.$router.go(-1)
+    }
   },
   apollo: {
     motorDetalles: {

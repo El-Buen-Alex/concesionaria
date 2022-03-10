@@ -1,5 +1,6 @@
 <template>
   <div v-if="this.getCart.length>0">
+    <h1 CLASS="bg-gray-700 font-bold text-white text-xl text-center py-1 rounded-sm mb-3">PERSONALIZACION</h1>
     <div class="flex">
       <div class="w-1/4">
         <button :class="'w-full'+ (activeContent=='KIT'? ' border-b-4 border-indigo-500': '')" @click="showAccesorios('KIT')">KIT</button>

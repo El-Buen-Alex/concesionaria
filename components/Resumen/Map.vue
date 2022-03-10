@@ -1,5 +1,14 @@
 <template>
-  <div id="map" class="w-full h-96 overflow-hidden position:static"></div>
+<div class="w-full h-96 rounded-sm overflow-hidden">
+  <div v-if="showMapa"  id="map" class="w-full h-full overflow-hidden position:static"></div>
+  <div v-else class="w-full h-full bg-gray-700 opacity-75 flex justify-center">
+    <div class=" grid  content-center ">
+       <button class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded h-16 " @click="prntLocations">
+  Activar Ubicacion
+</button>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -12,14 +21,14 @@ export default {
         "pk.eyJ1IjoiZWwtYnVlbi1hbGV4IiwiYSI6ImNsMGhheTFoZjA2djUzaHFkdmc2OTB3a2wifQ.Yk_oRaEbkvuakyd6RH4YyQ",
       mapa: undefined,
       center: {},
-      longitud: 0,
-      latitud: 0,
+      longitud: undefined,
+      latitud: undefined,
       marker: {},
       isMapSet: false,
       markers: [],
+      showMapa:false
     };
   },
-  created() {},
 
   mounted() {
     this.prntLocations();
@@ -90,6 +99,7 @@ export default {
       });
     },
     async setCenter() {
+      if (navigator.geolocation){
       return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition((position) => {
           this.longitud = position.coords.longitude;
@@ -101,6 +111,7 @@ export default {
           return resolve(true);
         });
       });
+    }
     },
     createMarkersofConcesionarios() {
       this.concesionariosList.forEach((concesionario) => {
@@ -152,6 +163,13 @@ export default {
          resolve(true);
       });
     },
+  },
+  watch:{
+    latitud:function(newVal){
+      if(newVal!=undefined){
+        this.showMapa=true
+      }
+    }
   },
   computed: {
     ...mapGetters(["concesionariosList", "ubicacionUser"]),

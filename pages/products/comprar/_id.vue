@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center">
+  <div class="flex justify-center h-full">
     <div class="flex flex-wrap w-5/6">
       <div class="w-full sm:w-2/3 px-5">
         <Checkout/>

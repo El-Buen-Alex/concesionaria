@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="paquetes.length > 0">
-      <h1 class="bg-black text-center font-bold text-white mb-3">PAQUETES</h1>
+      <h1 class="rounded-sm bg-gray-700 text-center font-bold text-white mb-3">PAQUETES</h1>
       <div class="flex">
         <Paquete
           v-for="paquete in paquetes"

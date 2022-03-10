@@ -6,15 +6,45 @@
       alt="vehiculo Seleccionado"
     />
     <div>
-      <h1 class="text-white bg-gray-800 text-center font-bold text-2xl">
-        RESUMEN
-      </h1>
+      <button
+        class="
+          text-white
+          bg-gray-700
+          text-center
+          font-bold
+          text-2xl
+          w-full
+          rounded-sm
+        "
+        @click="changeVisibility"
+      >
+        {{ complmento }}
+      </button>
     </div>
+    <Transition>
+      <div class="h-72" v-if="showResumen">ola</div>
+    </Transition>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      showResumen: false,
+      complmento: "SHOW MORE",
+    };
+  },
+  methods: {
+    changeVisibility() {
+      this.showResumen = !this.showResumen;
+      if (this.showResumen) {
+        this.complmento = "SHOW LESS";
+      } else {
+        this.complmento = "SHOW MORE";
+      }
+    },
+  },
   props: {
     vehiculoSelected: {
       type: Object,
@@ -29,5 +59,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>

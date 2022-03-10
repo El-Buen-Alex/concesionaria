@@ -1,7 +1,7 @@
 <template>
   <div v-if="this.vehiculoSelected.id">
     <div>
-      <h1 class="text-5xl text-center bg-black text-white p-2 rounded-lg">
+      <h1 class="text-5xl text-center bg-black text-white p-2 rounded-sm">
         {{ vehiculoSelected.vehiculoanio.vehiculo.modelo }}
       </h1>
     </div>

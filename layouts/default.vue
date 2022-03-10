@@ -1,14 +1,13 @@
 <template>
     <div class="h-screen">
-        <div class="h-1/6 bg-current">
+        <div class="header bg-current">
             <Nav  />
         </div>
-       <div >
-           
+       <div class="main" >
                 <Nuxt/>
        </div>
-       <div class="h-1/6 bg-current">
-
+       <div class="footer bg-current">
+       <div class="h-full text-white">a</div>
        </div>
     </div>
 </template>
@@ -21,3 +20,17 @@ export default {
     }
 }
 </script>
+<style scoped>
+.header{
+    height: 16%;
+}
+.main{
+    min-height: 68%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+.footer{
+    height:16%;
+}
+</style>

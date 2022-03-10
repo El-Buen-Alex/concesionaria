@@ -7,7 +7,7 @@
       @click="selectMotor()"
       :checked="checked"
     />
-    <div class="max-w-sm rounded overflow-hidden shadow-lg h-64">
+    <div class="max-w-sm rounded-sm overflow-hidden shadow-lg h-64">
       <div class="font-bold text-xl mb-2 text-center">{{ name }}</div>
       <div class="px-6 py-4">
         <p

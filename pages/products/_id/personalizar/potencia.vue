@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="motores.length > 0">
-      <h1 class="bg-black text-center font-bold text-white mb-3">MOTOR</h1>
+      <h1 class="bg-gray-700 text-center font-bold text-white mb-3 rounded-sm">MOTOR</h1>
       <div class="flex">
         <Motor
           v-for="motor in motores"
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div v-if="transmisiones.length > 0">
-      <h1 class="bg-black text-center font-bold text-white my-3">
+      <h1 class="bg-gray-700 text-center font-bold text-white my-3 rounded-sm">
         TRANSMISION
       </h1>
       <div class="flex">
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div v-if="tracciones.length > 0">
-      <h1 class="bg-black text-center font-bold text-white my-3">TRACCION</h1>
+      <h1 class="bg-gray-700 text-center font-bold text-white my-3 rounded-sm">TRACCION</h1>
       <div class="flex">
         <Traccion
           v-for="traccion in tracciones"

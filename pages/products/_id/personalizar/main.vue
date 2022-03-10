@@ -6,10 +6,10 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import GetTransmisionesByIdVehiculoanio from "~/apollo/GetTransmisionesByIdVehiculoanio";
-import GetMotorsByIdVehiculoAnio from "~/apollo/GetMotorsByIdVehiculoAnio";
-import GetPaquetesByIdVehiculoanio from "~/apollo/GetPaquetesByIdVehiculoanio";
-import GetTraccionesByIdVehiculoAnio from "~/apollo/GetTraccionesByIdVehiculoAnio";
+import GetTransmisionesByIdVehiculoanio from "../../../../apollo/GetTransmisionesByIdVehiculoanio";
+import GetMotorsByIdVehiculoAnio from "../../../../apollo/GetMotorsByIdVehiculoAnio";
+import GetPaquetesByIdVehiculoanio from "../../../../apollo/GetPaquetesByIdVehiculoanio";
+import GetTraccionesByIdVehiculoAnio from "../../../../apollo/GetTraccionesByIdVehiculoAnio";
 import MainInformation from "~/components/personalizacion/MainInformation.vue";
 export default {
   data() {
