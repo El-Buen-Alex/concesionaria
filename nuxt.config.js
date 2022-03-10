@@ -59,6 +59,7 @@ export default {
   build: {
   },
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:1337'
+    baseUrl: process.env.BASE_URL || 'http://localhost:1337',
+    stripe_key:"pk_test_51KbDh5LcrhAuEwlWTbDIctfiqwlrBMcSnCrfKwEggXa38WI1RAS621VZPXWFuse2e3pb5yIRRTZFzAucbyMeJiXJ00lUsJylT4"
   }
 }
