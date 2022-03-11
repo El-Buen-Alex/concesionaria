@@ -31,7 +31,7 @@ export default {
   methods: {},
   apollo: {
     categorias: {
-      prefetch: true,
+      prefetch: false,
       query: GetCategorias,
       result({ data, loading }) {
         if (!loading) {
