@@ -66,7 +66,6 @@ export default {
              result ({ data, loading }) {
                 if (!loading) {
                      this.vehiculos=data.vehiculoimagens
-                     //cuando ya estemos en prod
                      if(this.vehiculos.length>1){
                       let hash={}
                      this.vehiculos=this.vehiculos.filter((elemento)=>{
@@ -75,7 +74,6 @@ export default {
                         return exists;
                   })
                       hash={}
-                    //  console.log( this.vehiculos)
                     }
                     
                 }

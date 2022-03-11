@@ -1,5 +1,5 @@
 <template>
-  <div class="my-2">
+  <div class="my-2" v-if="this.categories.length>0">
     <All-products
       v-for="category in categories"
       :key="category.id"
@@ -9,7 +9,6 @@
 </template>
 
 <script >
-import gql from "graphql-tag";
 import { mapGetters } from "vuex";
 import AllProducts from "~/components/AllProducts.vue";
 import GetCategorias from "~/apollo/getCategorias";

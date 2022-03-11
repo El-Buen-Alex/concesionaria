@@ -55,7 +55,7 @@ export default {
     this.setUrlImgPreview();
   },
   created() {
-    if (process.client) {
+    if (process.client && localStorage.getItem("vehiculoSelected")) {
         this.$store.commit(
         "setVehiculoSelected",
         JSON.parse(localStorage.getItem("vehiculoSelected") || {})
