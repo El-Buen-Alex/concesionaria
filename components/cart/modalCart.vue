@@ -12,7 +12,7 @@
         <div 
         class="fixed w-full h-full flex z-[1]" 
         v-if="abrirModal">
-            <div class="w-64 h-96 fixed bottom-3 right-3 bg-black rounded-3xl">
+            <div class="w-72 h-96 fixed bottom-3 right-3 bg-black rounded-3xl">
                 <div class="absolute right-3 mt-5">
                     <button @click="funcionModal">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="red">
@@ -21,7 +21,7 @@
                     </button>
                 </div>
                 <p align="center" class="mt-6 text-green-500">Cart</p>
-                <div class="contenedor w-30 h-64 mt-4 ml-7 mr-3.5 overflow-y-auto">
+                <div class="contenedor w-30 h-64 mt-3 ml-7 mr-3.5 overflow-y-auto">
                     <CartComponent/>
                 </div>
                 <p class="mt-4 ml-7 text-green-500">Total ---> $ {{getCartTotal}}</p>
