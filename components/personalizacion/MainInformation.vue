@@ -19,21 +19,9 @@
         {{ transmisiones[0].detalle }}
       </li>
     </ul>
-    <div class="w-full flex px-1">
-      <div class="w-1/3 px-2">
-        <button @click="goToInicio()" class="w-full bg-red-600">
-          
-            Atras
-        </button>
-      </div>
-      <div class="w-2/3 px-2">
-        <button class="w-full bg-green-600">
-          <NuxtLink :to="`/products/${id}/personalizar/potencia`"
-            >Siguiente</NuxtLink
-          >
-        </button>
-      </div>
-    </div>
+    
+    <Navigation v-on:prev="goToInicio" v-on:next="next"/>
+    
   </div>
 </template>
 
@@ -42,6 +30,7 @@ import { mapGetters, mapActions } from "vuex";
 import GetMotorDetalleByIdMotor from "~/apollo/GetMotorDetalleByIdMotor";
 import GetPaqueteDetalleByIdPaquete from "~/apollo/GetPaqueteDetalleByIdPaquete";
 import GetTraccionDetalleByIdTraccion from "~/apollo/GetTraccionDetalleByIdTraccion";
+import Navigation from '~/components/shared/Navigation.vue'
 export default {
   data() {
     return {
@@ -89,6 +78,11 @@ export default {
       this.$store.commit("setStartProcess",false)
       localStorage.setItem("startProcess", false)
       this.$router.go(-1)
+    },
+    next(){
+       this.$router.push(
+            `/products/${this.id}/personalizar/potencia`
+          );
     }
   },
   apollo: {
@@ -167,5 +161,8 @@ export default {
       "traccionDetalle",
     ]),
   },
+  components:{
+    Navigation
+  }
 };
 </script>

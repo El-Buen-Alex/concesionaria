@@ -35,22 +35,9 @@
         />
       </div>
     </div>
-    <div class="w-full flex px-1">
-      <div class="w-1/3 px-2">
-        <button  @click="$router.go(-1)" class="w-full bg-red-600">
-         Atras
-        </button>
-      </div>
-      <div class="w-2/3 px-2">
-        <button
-            class="w-full bg-green-600" 
-            @click="goToPaquetes()"
-          >
-            Siguiente
-          </button>
-        
-      </div>
-    </div>
+    
+    <Navigation v-on:prev="$router.go(-1)" v-on:next="goToPaquetes"/>
+
   </div>
 </template>
 
@@ -59,6 +46,7 @@ import { mapGetters, mapActions } from "vuex";
 import Motor from "~/components/personalizacion/containers/Motor.vue";
 import Transmision from "~/components/personalizacion/containers/Transmision.vue";
 import Traccion from "~/components/personalizacion/containers/Traccion.vue";
+import Navigation from '~/components/shared/Navigation.vue'
 export default {
   data() {
     return{
@@ -80,6 +68,7 @@ export default {
     Motor,
     Transmision,
     Traccion,
+    Navigation,
   },
   mounted() {
     if(process.client && this.motores.length==0){

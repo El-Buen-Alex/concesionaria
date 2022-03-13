@@ -76,7 +76,7 @@ export const actions = {
 export const mutations = {
     setProducts: (state, products) => (state.allProducts = products),
     setFeaturedProducts: (state, products) => (state.featuredProducts = products),
-    setCart:(state, cartItem)=>{state.cartItems=cartItem; if(state.cartItems.length>1 && state.CanSeeResumen==0 && process.client) state.CanSeeResumen=1 },
+    setCart:(state, cartItem)=>{state.cartItems=cartItem; if(state.cartItems.length>1 && state.CanSeeResumen==0 && process.client){ state.CanSeeResumen=1; state.canPersonalice=1} },
     setCartItem: (state, item) => {
       const carro=state.cartItems
       carro.push(item)

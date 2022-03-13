@@ -23,22 +23,7 @@
                 <Mantenimientos :mantenimientos="mantenimientos" v-on:addOrEditAccesorio="addOrEditAccesorio"/>
             </div>
     </div>
-    <div class="w-full flex px-1">
-      <div class="w-1/3 px-2">
-        <button  @click="$router.go(-1)" class="w-full bg-red-600">
-        
-            >Atras
-        </button>
-      </div>
-      <div class="w-2/3 px-2">
-       <button class="w-full bg-green-600">
-          <NuxtLink :to="`/products/resumen/${this.$route.params.id}`"
-            >Siguiente</NuxtLink
-          >
-        </button>
-        
-      </div>
-    </div>
+    <Navigation v-on:prev="$router.go(-1)" v-on:next="goToResumen"/>
   </div>
 </template>
 
@@ -50,6 +35,8 @@ import GetMantenimientosByIdVehiculoAnio from '~/apollo/GetMantenimientosByIdVeh
 import Kits from '~/components/personalizacion/containers/Accesorios/Kits.vue'
 import Individuales from '~/components/personalizacion/containers/Accesorios/Individuales.vue'
 import Mantenimientos from '~/components/personalizacion/containers/Accesorios/Mantenimientos.vue'
+import Navigation from '~/components/shared/Navigation.vue'
+
 export default {
     data() {
         return {
@@ -123,11 +110,16 @@ export default {
                 this.deleteCartItem(idUnique)
             }
         },
+        goToResumen(){
+        this.$router.push(`/products/resumen/${this.$route.params.id}`)
+
+        }
     },
     components:{
         Kits,
         Individuales,
-        Mantenimientos
+        Mantenimientos,
+        Navigation
     },
     computed: {
         ...mapGetters(["getCart"])

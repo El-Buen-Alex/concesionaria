@@ -1,6 +1,7 @@
 <template>
-  <div class="navbar flex text-white relative">
-    <div class="nav-item-center flex space-x-0 sm:space-x-20 p-5 mx-auto">
+  <div class="navbar flex text-white relative flex-wrap h-auto ">
+    <div class="w-full lg:w-1/6 h-24 flex justify-center my-0"><img class="w-auto h-auto max-w-full max-h-full" src="../static/Kia-Logo.png" alt="logo kia"></div>
+    <div class="nav-item-center flex space-x-0 sm:space-x-20 sm:ml-0 pb-5 mx-auto w-full lg:w-5/6">
       <button  @click="goToUrl('/')" >Escoge Tu Vehiculo-></button>
       <button  :disabled="CanPersonalice==0" :class="CanPersonalice==0? 'disabled':'active'" @click="goToUrl(`/products/${vehiculoSelected.id}/personalizar/main`)">Personaliza-></button>
       <button  :disabled="CanSeeResumen==0" :class="CanSeeResumen==0? 'disabled':'active'" @click="goToUrl(`/products/resumen/${vehiculoSelected.id}`)">Resumen de Tu Elección-></button>

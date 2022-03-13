@@ -14,22 +14,7 @@
               <p class="text-xl">
                 {{ vehiculoimagen.vehiculoanio.vehiculo.detalle }}
               </p>
-
-              <div class="w-full flex mt-5">
-                <div class="w-1/3 px-1">
-                  <button @click="$router.go(-1)" class="w-full bg-red-600">
-                    >Atras
-                  </button>
-                </div>
-                <div class="w-2/3 px-2">
-                  <button
-                    class="w-full bg-green-600"
-                    @click="startProcessCompra()"
-                  >
-                    Siguiente
-                  </button>
-                </div>
-              </div>
+              <Navigation v-on:prev="$router.go(-1)" v-on:next="startProcessCompra"/>
             </div>
           </div>
         </div>
@@ -41,6 +26,7 @@
 import { mapGetters } from "vuex";
 import findVehiculoQery from "~/apollo/findVehiculoInformation";
 import ShowProduct from "../../components/ShowProduct.vue";
+import Navigation from '~/components/shared/Navigation.vue'
 export default {
   data() {
     return {
@@ -107,6 +93,7 @@ export default {
   },
   components: {
     ShowProduct,
+    Navigation
   },
 };
 </script>

@@ -22,7 +22,7 @@
       </button>
     </div>
     <Transition>
-      <div class="h-72" v-if="showResumen"><CartComponent/></div>
+      <div class="min-h-72" v-if="showResumen"><CartComponent/></div>
     </Transition>
   </div>
 </template>

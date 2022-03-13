@@ -1,6 +1,6 @@
 <template>
     <div class="h-screen">
-        <div class="header bg-current">
+        <div class="header bg-current ">
             <Nav  />
         </div>
        <div class="main" >
@@ -22,15 +22,26 @@ export default {
 </script>
 <style scoped>
 .header{
-    height: 16%;
+    height: 25%;
 }
 .main{
-    min-height: 68%;
+    min-height: 60%;
     display: flex;
     justify-content:center;
     align-items:center;
 }
 .footer{
+    height:15%;
+}
+@media (min-width: 1024px) {
+    .header{
+    height: 16%;
+    }
+    .main{
+        min-height: 68%;
+    }
+    .footer{
     height:16%;
+}
 }
 </style>

@@ -26,7 +26,7 @@
                 <img
                   class="max-w-full max-h-full"
                   :src="
-                    'http://localhost:1337' + vehiculoInformation.url_imagen.url
+                    RouteServer + vehiculoInformation.url_imagen.url
                   "
                   :alt="vehiculoInformation.url_imagen.name"
                   srcset=""
@@ -110,5 +110,10 @@ export default {
       required: true,
     },
   },
+  computed:{
+     RouteServer() {
+      return process.env.baseUrl;
+    },
+  }
 };
 </script>

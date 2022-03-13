@@ -12,18 +12,9 @@
           v-if="this.concesionariosList.length > 0"
           :concesionarios="this.concesionariosList"
         />
-        <div class="w-full flex mt-5">
-          <div class="w-1/3 px-1">
-            <button @click="$router.go(-1)" class="w-full bg-red-600">
-              >Atras
-            </button>
-          </div>
-          <div class="w-2/3 px-2">
-            <button class="w-full bg-green-600" @click="goToComprar()">
-              Siguiente
-            </button>
-          </div>
-        </div>
+        
+    <Navigation v-on:prev="$router.go(-1)" v-on:next="goToComprar"/>
+
       </div>
     </div>
   </div>
@@ -34,6 +25,8 @@ import Concesionarios from "~/components/Resumen/Concesionarios.vue";
 import { mapGetters } from "vuex";
 import GetConcesionarios from "~/apollo/GetConcesionarios";
 import ResumenCompra from "~/components/Resumen/ResumenCompra.vue";
+import Navigation from '~/components/shared/Navigation.vue'
+
 export default {
   mounted() {},
   created() {
@@ -80,6 +73,7 @@ export default {
   components: {
     Concesionarios,
     ResumenCompra,
+    Navigation
   },
 };
 </script>
