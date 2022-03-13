@@ -9,10 +9,12 @@ export const state = () => ({
     paqueteSelected:[],
     traccionSelected:[],
     transmisionSelected:[],
-    canPersonalice:false,
-    CanSeeResumen:false,
-    CanComprar:false,
+
+    canPersonalice:0,
+    CanSeeResumen:0,
+    CanComprar:0,
     isSetDefault:false,
+    
     motores:[],
     transmisiones:[],
     paquetes:[],
@@ -74,12 +76,13 @@ export const actions = {
 export const mutations = {
     setProducts: (state, products) => (state.allProducts = products),
     setFeaturedProducts: (state, products) => (state.featuredProducts = products),
-    setCart:(state, cartItem)=>(state.cartItems=cartItem),
+    setCart:(state, cartItem)=>{state.cartItems=cartItem; if(state.cartItems.length>1 && state.CanSeeResumen==0 && process.client) state.CanSeeResumen=1 },
     setCartItem: (state, item) => {
       const carro=state.cartItems
       carro.push(item)
       if(process.client){
         localStorage.setItem("cartItem", JSON.stringify(carro))
+        if(state.cartItems.length>1 && state.CanSeeResumen==0) state.CanSeeResumen=1
       }
     },
     removeCartItem: (state, id) =>
@@ -88,7 +91,9 @@ export const mutations = {
         1
       ),
     setCategories:(state, categories)=>(state.categories=categories),
-    setVehiculoSelected:(state, vehiculo)=>(state.vehiculoSelected=vehiculo),
+
+    setVehiculoSelected:(state, vehiculo)=>{state.vehiculoSelected=vehiculo; if(process.client) state.canPersonalice=1},
+
     setCanPersonalice:(state, canPersonalice)=>(state.canPersonalice=canPersonalice),
     setCanSeeResumen:(state, CanSeeResumen)=>(state.CanSeeResumen=CanSeeResumen),
     SetCanComprar:(state, CanComprar)=>(state.CanComprar=CanComprar),
@@ -107,6 +112,8 @@ export const mutations = {
     setMapa:(state, mapaBox)=>(state.mapaBox=mapaBox),
     setConcesionarios:(state, concesionariosList)=>(state.concesionariosList=concesionariosList),
     setUbicacionUser:(state, ubicacionUser)=>(state.ubicacionUser=ubicacionUser),
-    setConcesionarioSelected:(state, concesionarioSelected)=>(state.concesionarioSelected=concesionarioSelected),
+    setConcesionarioSelected:(state, concesionarioSelected)=>{state.concesionarioSelected=concesionarioSelected;
+      if(process.client) state.CanComprar=1
+    },
     setStartProcess:(state, startProcess)=>(state.startProcess=startProcess)
   }

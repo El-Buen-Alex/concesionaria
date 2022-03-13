@@ -1,11 +1,11 @@
 <template>
   <div class="navbar flex text-white relative">
-    <div class="nav-item-center flex space-x-6 sm:space-x-20 p-5 mx-auto">
-      <NuxtLink to="/" >Escoge Tu Vehiculo-></NuxtLink>
-      <NuxtLink to="/all"  :class="CanPersonalice? 'active': 'disabled'">Personaliza-></NuxtLink>
-      <NuxtLink to="/men"  :class="CanSeeResumen? 'active': 'disabled'">Resumen de Tu Elección-></NuxtLink>
-      <NuxtLink to="/women" :class="CanComprar? 'active': 'disabled'">Comprar En Linea!</NuxtLink>
-      <div  class=" absolute top-1/3 right-2">
+    <div class="nav-item-center flex space-x-0 sm:space-x-20 p-5 mx-auto">
+      <button  @click="goToUrl('/')" >Escoge Tu Vehiculo-></button>
+      <button  :disabled="CanPersonalice==0" :class="CanPersonalice==0? 'disabled':'active'" @click="goToUrl(`/products/${vehiculoSelected.id}/personalizar/main`)">Personaliza-></button>
+      <button  :disabled="CanSeeResumen==0" :class="CanSeeResumen==0? 'disabled':'active'" @click="goToUrl(`/products/resumen/${vehiculoSelected.id}`)">Resumen de Tu Elección-></button>
+      <button  :disabled="CanComprar==0" :class="CanComprar==0? 'disabled':'active'" @click="goToUrl(`/products/comprar/${vehiculoSelected.id}`)">Comprar En Linea!</button>
+      <div  class=" absolute bottom-0  right-0 lg:top-1/3 lg:right-2 lg:mt-0">
           <span class="text-green-500">Total Aproximado: ${{getCartTotal}} </span>
       </div>
     </div>
@@ -32,10 +32,12 @@ export default {
         
     },
     methods:{
-        
+        goToUrl(url){
+          this.$router.push(url);
+        }
     },
     computed:{
-        ...mapGetters(["CanPersonalice", "CanSeeResumen", "CanComprar", "getCartTotal"]),
+        ...mapGetters(["CanPersonalice", "CanSeeResumen", "CanComprar", "getCartTotal", "vehiculoSelected"]),
     }
 };
 </script>

@@ -68,7 +68,7 @@ export default {
     },
   },
   created() {
-    this.activeCanPersonalizarLink();
+   // this.activeCanPersonalizarLink();
   },
   mounted() {
     this.getStateProcesoCompra();

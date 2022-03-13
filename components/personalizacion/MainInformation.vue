@@ -61,7 +61,8 @@ export default {
     ...mapActions(["addItemToCart", "deleteCartItem"]),
     setValoresPorDefault() {
      
-        this.addItemToCart({
+        if(this.getCart.length==1){
+          this.addItemToCart({
           cartItem: this.motorSelected,
           campo: "motor",
         }).then(() => {
@@ -81,6 +82,7 @@ export default {
           campo: "transmision",
         });
         this.$store.commit("setIsSetDefault", true);
+        }
       
     },
     goToInicio(){
