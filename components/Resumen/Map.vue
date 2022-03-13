@@ -1,6 +1,6 @@
 <template>
 <div class="w-full h-96 rounded-sm overflow-hidden">
-  <div v-if="showMapa"  id="map" class="w-full h-full overflow-hidden position:static"></div>
+  <div v-if="showMapa"  id="map" class="w-full h-full"></div>
   <div v-else class="w-full h-full bg-gray-700 opacity-75 flex justify-center">
     <div class=" grid  content-center ">
        <button class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded h-16 " @click="prntLocations">
@@ -147,6 +147,7 @@ export default {
           zoom: 9,
           center: [this.longitud, this.latitud],
         });
+        this.mapa.zPosition=2
         this.mapa.addControl(new mapboxgl.NavigationControl());
         this.mapa.addControl(new mapboxgl.FullscreenControl());
         this.mapa.addControl(
@@ -185,4 +186,5 @@ border-radius: 50%;
 cursor: pointer;
 padding: 0;
 }
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed bottom-3 right-3 shadow-2xl bg-transparent">
+    <div class="fixed bottom-3 right-3 shadow-2xl bg-transparent z-5">
         
         <button 
         class="buttonModal px-3 py-3 bg-black hover:bg-green-500 rounded-full"
@@ -10,7 +10,7 @@
         </button>
 
         <div 
-        class="fixed w-full h-full flex z-[1]" 
+        
         v-if="abrirModal">
             <div class="w-72 h-96 fixed bottom-3 right-3 bg-black rounded-3xl">
                 <div class="absolute right-3 mt-5">
@@ -65,4 +65,5 @@ export default {
     background: rgba(16, 185, 129, 1);
     border-radius: 5px;
 }
+
 </style>

@@ -22,12 +22,13 @@
       </button>
     </div>
     <Transition>
-      <div class="h-72" v-if="showResumen">ola</div>
+      <div class="h-72" v-if="showResumen"><CartComponent/></div>
     </Transition>
   </div>
 </template>
 
 <script>
+import CartComponent from '~/components/cart/cartComponent.vue';
 export default {
   data() {
     return {
@@ -56,6 +57,9 @@ export default {
       return process.env.baseUrl;
     },
   },
+  components:{
+    CartComponent
+  }
 };
 </script>
 

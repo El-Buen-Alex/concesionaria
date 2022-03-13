@@ -1,6 +1,10 @@
 module.exports = {
     theme: {
-       
+        extend: {
+            zIndex: {
+              '10001': '10001',
+            }
+          }
     },
     variants: {
         extend: {

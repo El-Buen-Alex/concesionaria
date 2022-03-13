@@ -1,12 +1,16 @@
 <template>
-  <div class="flex justify-center h-full">
-    <div class="flex flex-wrap w-5/6">
-      <div class="w-full sm:w-2/3 px-5">
+  <div class="flex justify-center h-full my-2">
+    <div class="flex flex-wrap w-5/6 justify-content-center">
+      <div class="w-full w-full rounded-sm overflow-hidden shadow-lg">
+        <div class="bg-current w-full my-2">
+          <p class="font-bold text-white text-2xl py-2 pl-3">PAGOS</p>
+        </div>
+        <ResumenCompra v-if="this.vehiculoSelected.id" :vehiculoSelected="this.vehiculoSelected" />
+
         <Checkout/>
       </div>
-       <div class="w-full md:w-1/3">
-        <ResumenCompra v-if="this.vehiculoSelected.id" :vehiculoSelected="this.vehiculoSelected" />
-      </div>
+      
+      
     </div>
   </div>
 </template>
@@ -17,8 +21,8 @@ import Checkout from '~/components/compra/checkou.vue'
 export default {
 
   mounted(){
-    if(process.client && !this.vehiculoSelected.id){
-      this.$store.commit("setVehiculoSelected", JSON.parse(localStorage.getItem("vehiculoSelected") || {}))
+    if(process.client && localStorage.getItem("vehiculoSelected")){
+      this.$store.commit("setVehiculoSelected", JSON.parse(localStorage.getItem("vehiculoSelected")))
     }
   },
   computed: {
