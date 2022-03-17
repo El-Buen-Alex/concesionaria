@@ -66,9 +66,14 @@ export default {
    generate:{
     routes: async function(){
       return axios.get(`https://strapi-backend-concesionaria.herokuapp.com/vehiculoanios`).then(response=>{
-        return response.data.map(e=>{
+        let products_page= response.data.map(e=>{
           return '/products/'+e.id
         })
+        let products_mian_page= response.data.map(e=>{
+          return '/products/'+e.id+'/personalizar/main'
+        })
+
+        return [...products_page, ...products_mian_page]
       })
       
     }
