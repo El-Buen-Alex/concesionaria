@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full mt-3">
+  <div class="w-full mt-3" v-if="this.concesionariosList">
     <div class="flex justify-center">
       <select
         class="

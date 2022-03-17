@@ -26,7 +26,7 @@
                 <img
                   class="max-w-full max-h-full"
                   :src="
-                    RouteServer + vehiculoInformation.url_imagen.url
+                    vehiculoInformation.url_imagen.url
                   "
                   :alt="vehiculoInformation.url_imagen.name"
                   srcset=""

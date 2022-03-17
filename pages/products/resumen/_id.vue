@@ -55,6 +55,7 @@ export default {
       query: GetConcesionarios,
       result({ data, loading }) {
         if (!loading) {
+          console.log(data.concesionarios)
           this.$store.commit("setConcesionarios", data.concesionarios);
         }
       },

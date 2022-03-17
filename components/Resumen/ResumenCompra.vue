@@ -2,7 +2,7 @@
   <div class="w-full">
     <img
       class="w-full max-h-full"
-      :src="RouteServer + vehiculoSelected.url_imagen.url"
+      :src=" vehiculoSelected.url_imagen.url"
       alt="vehiculo Seleccionado"
     />
     <div>

@@ -92,6 +92,7 @@ export default {
       console.log("que raro")
     },
     async prntLocations() {
+      
       await this.setCenter().then(() => {
          this.createMap().then(() => {
            this.createMarkersofConcesionarios()

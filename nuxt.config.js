@@ -42,7 +42,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'http://localhost:1337/graphql',
+        httpEndpoint: 'https://strapi-backend-concesionaria.herokuapp.com/graphql',
       },
     },
   },
@@ -59,7 +59,7 @@ export default {
   build: {
   },
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:1337',
+    baseUrl: process.env.BASE_URL || 'https://strapi-backend-concesionaria.herokuapp.com',
     stripe_key:"pk_test_51KbDh5LcrhAuEwlWTbDIctfiqwlrBMcSnCrfKwEggXa38WI1RAS621VZPXWFuse2e3pb5yIRRTZFzAucbyMeJiXJ00lUsJylT4"
   }
 }

@@ -8,7 +8,7 @@
     <div class="w-full">
       <div class="w-full">
         <img
-          :src="RouteServer + url_previe_img"
+          :src=" url_previe_img"
           alt="preview_del_vehiculo"
           class="w-full"
         />
@@ -28,7 +28,7 @@
             :checked="vehiculoimagen.id == vehiculoSelected.id ? true : ''"
           />
           <img
-            :src="RouteServer + vehiculoimagen.url_imagen.url"
+            :src=" vehiculoimagen.url_imagen.url"
             :alt="vehiculoimagen.vehiculoanio.vehiculo.modelo"
             class="w-100 "
           />

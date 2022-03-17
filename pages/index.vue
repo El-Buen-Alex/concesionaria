@@ -23,9 +23,6 @@ export default {
     };
   },
   mounted() {
-    if(process.client){
-      
-    }
   },
   methods: {},
   apollo: {
@@ -35,6 +32,7 @@ export default {
       result({ data, loading }) {
         if (!loading) {
           this.$store.commit("setCategories", data.categorias);
+          console.log(data.categorias)
         }
       },
     },

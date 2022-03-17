@@ -84,7 +84,7 @@ export default {
       }).catch((c) => {
         console.log(c);
       });
-      const stripePromise = loadStripe(process.env.stripe_key);
+      const stripePromise = loadStripe("pk_test_51KbDh5LcrhAuEwlWTbDIctfiqwlrBMcSnCrfKwEggXa38WI1RAS621VZPXWFuse2e3pb5yIRRTZFzAucbyMeJiXJ00lUsJylT4");
       const session = response;
       const stripe = await stripePromise;
       console.log(session);
