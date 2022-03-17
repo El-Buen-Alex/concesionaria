@@ -72,8 +72,22 @@ export default {
         let products_mian_page= response.data.map(e=>{
           return '/products/'+e.id+'/personalizar/main'
         })
-
-        return [...products_page, ...products_mian_page]
+        let products_potencia_page= response.data.map(e=>{
+          return '/products/'+e.id+'/personalizar/potencia'
+        })
+        let products_paquetes_page= response.data.map(e=>{
+          return '/products/'+e.id+'/personalizar/paquetes'
+        })
+        let products_accesorios_page= response.data.map(e=>{
+          return '/products/'+e.id+'/personalizar/accesorios'
+        })
+        let products_resumen_page= response.data.map(e=>{
+          return '/products/resumen/'+e.id
+        })
+        let products_comprar_page= response.data.map(e=>{
+          return '/products/comprar/'+e.id
+        })
+        return [...products_page, ...products_mian_page, ...products_potencia_page, ...products_paquetes_page, ...products_accesorios_page,...products_resumen_page, ...products_comprar_page]
       })
       
     }
