@@ -1,3 +1,4 @@
+import axios from 'axios'
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -64,14 +65,13 @@ export default {
   },
    generate:{
     routes: async function(){
-      if(process.client){
-        const fetchData= await fetch(`${process.env.baseUrl}/vehiculoanios`)
-        const dataToRoutes= await fetchData.json()
-        return dataToRoutes.map(e=>{
+      return axios.get(`${process.env.baseUrl}/vehiculoanios`).then(response=>{
+        return response.data.map(e=>{
           return '/products/'+e.id
         })
-      }
-      }
+      })
+      
+    }
    }
 }
 
