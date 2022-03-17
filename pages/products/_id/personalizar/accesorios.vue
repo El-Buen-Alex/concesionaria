@@ -43,6 +43,8 @@ export default {
             class:' border-b-4 border-indigo-500',
             activeContent:'',
             kits:[],
+            individuals:[],
+            mantenimientos:[]
 
         }
     },
@@ -60,6 +62,11 @@ export default {
                 where: where,
                 };
             },
+            result({ data, loading }) {
+                if (!loading) {
+                console.log("kits,", data)
+                }
+      },
         },
         individuals:{
             prefetch: false,
@@ -95,6 +102,7 @@ export default {
         if(process.client && this.getCart.length==0){
             this.$store.commit("setCart",JSON.parse( localStorage.getItem("cartItem") || {}))
         }
+        console.log(this.kits)
     }, 
     methods: {
         ...mapActions(["addItemToCart","deleteCartItem"]),

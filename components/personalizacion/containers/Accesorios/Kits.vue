@@ -1,5 +1,5 @@
 <template>
-  <div v-if="kits" class="mt-5">
+  <div v-show="kits" class="mt-5">
       <Kit v-for="kit in kits" :key="kit.id" :kitObject="kit" v-on:addOrRemoveKit="addOrRemoveKit" />
   </div>
 </template>
@@ -8,7 +8,7 @@
 import Kit from './cards/kit.vue'
 export default {
     mounted(){
-        console.log(this.kits)
+        console.log("hola", this.kits)
     },
     methods:{
         addOrRemoveKit(accion, kit){

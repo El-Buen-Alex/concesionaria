@@ -19,7 +19,7 @@
         >
           <NuxtLink
             clasS=" flex items-center "
-            :to="`/products/${vehiculoInformation.id}`"
+            :to="`/products/${vehiculoInformation.vehiculoanio.id}`"
           >
             <div class="bg-white w-full rounded-sm">
               <div class="h-36 flex justify-center overflow:hidden">

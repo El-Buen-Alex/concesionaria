@@ -1,5 +1,5 @@
 <template>
-  <div class=" w-full py-3 px-8 bg-white shadow-lg rounded-lg my-2" v-if="kitObject ">
+  <div class=" w-full py-3 px-8 bg-white shadow-lg rounded-lg my-2" v-if="kitObject">
   <div>
     <h2 class="text-gray-800 text-xl font-semibold">{{kitObject.name}}</h2>
     <p class="mt-2 text-gray-600">{{kitObject.precio}}</p>
@@ -25,7 +25,6 @@ export default {
     },
     mounted(){
         this.findItem(this.kitObject, 'KIT')
-        console.log(this.getCart)
     },
     methods:{
         addOrRemoveElement(e){
