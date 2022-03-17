@@ -62,14 +62,14 @@ export default {
     baseUrl: process.env.BASE_URL || 'https://strapi-backend-concesionaria.herokuapp.com',
     stripe_key:"pk_test_51KbDh5LcrhAuEwlWTbDIctfiqwlrBMcSnCrfKwEggXa38WI1RAS621VZPXWFuse2e3pb5yIRRTZFzAucbyMeJiXJ00lUsJylT4"
   },
-   generate:{
-    routes: async function(){
-      const fetchData= await fetch(`${process.env.baseUrl}/vehiculoanios`)
-      const dataToRoutes= await fetchData.json()
-      return dataToRoutes.map(e=>{
-        return '/products/'+e.id
-      })
-    }
-   }
+  //  generate:{
+  //   routes: async function(){
+  //     const fetchData= await fetch(`${process.env.baseUrl}/vehiculoanios`)
+  //     const dataToRoutes= await fetchData.json()
+  //     return dataToRoutes.map(e=>{
+  //       return '/products/'+e.id
+  //     })
+  //   }
+  //  }
 }
 
